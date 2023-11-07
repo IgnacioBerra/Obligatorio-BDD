@@ -14,7 +14,7 @@ namespace API.Clases
         public int CI { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de agenda ")]
-        public DateOnly fechaAgenda { get; set; }
+        public DateTime fechaAgenda { get; set; }
 
         [ForeignKey("CI")]
         public Funcionarios FuncId { get; set; }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -7,59 +6,50 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Migrations
 {
     /// <inheritdoc />
-    public partial class NuevaMigracion : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
                 name: "logins",
                 columns: table => new
                 {
                     logId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     password = table.Column<int>(type: "int", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_logins", x => x.logId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "periodos_actualizacion",
                 columns: table => new
                 {
-                    fechaInicio = table.Column<DateOnly>(type: "date", nullable: false),
-                    fechaFin = table.Column<DateOnly>(type: "date", nullable: false),
+                    fechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    fechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     año = table.Column<int>(type: "int", nullable: false),
                     semestre = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_periodos_actualizacion", x => new { x.fechaInicio, x.fechaFin });
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "funcionarios",
                 columns: table => new
                 {
                     CI = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    nombre = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    apellido = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    fechaNacimiento = table.Column<DateOnly>(type: "date", nullable: false),
-                    direccion = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    apellido = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    fechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    direccion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     telefono = table.Column<int>(type: "int", nullable: false),
-                    email = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    email = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
                     logId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -71,17 +61,16 @@ namespace API.Migrations
                         principalTable: "logins",
                         principalColumn: "logId",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "agenda",
                 columns: table => new
                 {
                     nro = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CI = table.Column<int>(type: "int", nullable: false),
-                    fechaAgenda = table.Column<DateOnly>(type: "date", nullable: false)
+                    fechaAgenda = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,18 +81,16 @@ namespace API.Migrations
                         principalTable: "funcionarios",
                         principalColumn: "CI",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "carnet_salud",
                 columns: table => new
                 {
                     CI = table.Column<int>(type: "int", nullable: false),
-                    fechaEmision = table.Column<DateOnly>(type: "date", nullable: false),
-                    fechaVencimiento = table.Column<DateOnly>(type: "date", nullable: false),
-                    Comprobante = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    fechaEmision = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    fechaVencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Comprobante = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,8 +101,7 @@ namespace API.Migrations
                         principalTable: "funcionarios",
                         principalColumn: "CI",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_agenda_CI",

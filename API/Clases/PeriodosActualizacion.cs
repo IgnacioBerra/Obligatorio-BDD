@@ -13,12 +13,12 @@ namespace API.Clases
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de inicio")]
         [Key]
-        public DateOnly fechaInicio { get; set; }
+        public DateTime fechaInicio { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de fin")]
 
         [Key]
-        public DateOnly fechaFin { get; set; }
+        public DateTime fechaFin { get; set; }
 
     }
 }

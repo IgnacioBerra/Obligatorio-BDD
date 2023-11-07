@@ -1,4 +1,5 @@
-﻿using API.Data;
+﻿using API.Clases;
+using API.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,16 +11,32 @@ namespace API.Controllers
     {
         private readonly DataInfo _context;
 
-        public LoginController (DataInfo data)
+        public LoginController(DataInfo data)
         {
             _context = data;
         }
 
-        [HttpGet("Logins")]
-        public IActionResult getLogins()
+        [HttpPost("Logins")]
+        public IActionResult Logeo(int id, int password)
         {
-            var loginDetails = _context.logins.AsQueryable();
-            return Ok(loginDetails);
+
+
+            var login = _context.logins.FirstOrDefault(user => user.logId == id);
+            if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+
+            if (login.password == password)
+            {
+                
+                return Ok("Logeado correctamente");
+            }
+            else
+            {
+                return Unauthorized("No se ha podido logear.");
+            }
         }
+
+     
+
+
     }
 }

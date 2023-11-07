@@ -19,7 +19,7 @@ namespace API.Clases
         public string apellido { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de nacimiento")]
-        public DateOnly fechaNacimiento { get; set; }
+        public DateTime fechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar direccion")]
         [StringLength(maximumLength: 200, MinimumLength = 2)]
