@@ -16,7 +16,7 @@ namespace API.Controllers
             _context = data;
         }
 
-        [HttpPost("Logins")]
+        [HttpPost("Logeo")]
         public IActionResult Logeo(int id, int password)
         {
 
@@ -35,7 +35,22 @@ namespace API.Controllers
             }
         }
 
-     
+        [HttpPost("AddUser")]
+        public IActionResult AddUser(int password)
+        {
+
+            Logins objetoLogin = new Logins();
+            objetoLogin.password = password;
+
+            var creacion = _context.logins.Add(objetoLogin);
+
+            _context.SaveChanges();
+
+            return Ok(objetoLogin);
+
+        }
+
+
 
 
     }
