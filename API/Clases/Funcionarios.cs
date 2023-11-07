@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Clases
 {
-    public class Funcionarios : DbContext
+    public class Funcionarios 
     {
         [Key]
         public int CI { get; set; }
