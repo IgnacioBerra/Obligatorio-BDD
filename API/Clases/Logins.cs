@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Clases
 {
-    public class Logins : DbContext
+    public class Logins
     {
         [Key]
         public int logId { get; set; }

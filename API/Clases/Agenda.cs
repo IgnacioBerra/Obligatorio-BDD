@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Clases
 {
-    public class Agenda: DbContext
+    public class Agenda
     {
         [Key]
         public int nro { get; set; }

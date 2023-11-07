@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Clases
 {
-    public class CarnetSalud : DbContext
+    public class CarnetSalud 
     {
         [Required(ErrorMessage = "Se requiere ingresar cedula de identidad")]
         [Key]

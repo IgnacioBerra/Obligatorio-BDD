@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Clases
 {
-    public class PeriodosActualizacion : DbContext
+    public class PeriodosActualizacion
     {
         [Required(ErrorMessage = "Se requiere ingresar año")]
         public int año { get; set; }
