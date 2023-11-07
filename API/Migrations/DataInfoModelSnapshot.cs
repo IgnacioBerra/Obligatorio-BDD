@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -17,7 +18,9 @@ namespace API.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.13")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("API.Clases.Agenda", b =>
                 {
@@ -25,11 +28,13 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("nro"));
+
                     b.Property<int>("CI")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("fechaAgenda")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("fechaAgenda")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("nro");
 
@@ -43,16 +48,16 @@ namespace API.Migrations
                     b.Property<int>("CI")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("fechaEmision")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("fechaEmision")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Comprobante")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateOnly>("fechaVencimiento")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("fechaVencimiento")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CI", "fechaEmision");
 
@@ -65,23 +70,25 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CI"));
+
                     b.Property<string>("apellido")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("direccion")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("email")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120)");
+                        .HasColumnType("nvarchar(120)");
 
-                    b.Property<DateOnly>("fechaNacimiento")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("fechaNacimiento")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("logId")
                         .HasColumnType("int");
@@ -89,7 +96,7 @@ namespace API.Migrations
                     b.Property<string>("nombre")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<int>("telefono")
                         .HasColumnType("int");
@@ -107,6 +114,8 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("logId"));
+
                     b.Property<int>("password")
                         .HasMaxLength(100)
                         .HasColumnType("int");
@@ -118,11 +127,11 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Clases.PeriodosActualizacion", b =>
                 {
-                    b.Property<DateOnly>("fechaInicio")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("fechaInicio")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateOnly>("fechaFin")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("fechaFin")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("año")
                         .HasColumnType("int");

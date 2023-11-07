@@ -13,10 +13,10 @@ namespace API.Clases
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de emision")]
         [Key]
-        public DateOnly fechaEmision { get; set; }
+        public DateTime fechaEmision { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de vencimiento")]
-        public DateOnly fechaVencimiento { get; set; }
+        public DateTime fechaVencimiento { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar comprobante")]
         [StringLength(maximumLength:500, MinimumLength = 2)]

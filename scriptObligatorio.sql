@@ -2,7 +2,7 @@ create database clinica_ucu_salud;
 use clinica_ucu_salud;
 
 create table Logins(
-   LogId int auto_increment,
+   LogId int IDENTITY(1,1),
    Password varchar(100) not null,
    primary key (LogId)
 );
@@ -21,7 +21,7 @@ create table Funcionarios(
 );
 
 create table Agenda(
-    Nro int auto_increment,
+    Nro int IDENTITY(1,1),
     CI int not null,
     Fch_Agenda date not null,
     primary key (Nro),
@@ -45,4 +45,4 @@ create table Periodos_Actualizacion(
     primary key (Fch_Inicio, Fch_Fin)
 );
 
-INSERT INTO Logins values (1,123);
+INSERT INTO Logins values (123);
