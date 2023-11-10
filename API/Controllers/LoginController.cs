@@ -19,21 +19,35 @@ namespace API.Controllers
         }
 
         [HttpPost("Logeo")]
-        public IActionResult Logeo(int id, int password)
+        public IActionResult Logeo(int logId, int password)
         {
 
-            var login = _context.logins.FirstOrDefault(user => user.logId == id);
-            if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+            
 
-            if (login.password == password)
+            try
             {
-                
-                return Ok("Logeado correctamente");
+                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={logId}");
+
+                if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+
+                else
+                {
+                    if (login.First().password == password)
+                    {
+
+                        return Ok("Logeado correctamente");
+                    }
+                    else
+                    {
+                        return Unauthorized("Credenciales incorrectas.");
+                    }
+                }
             }
-            else
+            catch (Exception e)
             {
-                return Unauthorized("No se ha podido logear.");
+                return StatusCode(500);
             }
+        
         }
 
         [HttpPost("AddUser")]
@@ -42,7 +56,7 @@ namespace API.Controllers
 
             try
             {
-                //var res = _context.logins.FromSqlRaw(saveUser).First();
+                
                var ejecucion = _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({password})");
                
             }
@@ -56,8 +70,58 @@ namespace API.Controllers
 
         }
 
+        [HttpDelete("DeleteUser")]
+        public IActionResult DeleteUser(int logId)
+        {
 
+            try
+            {
+                var ejecucion = _context.Database.ExecuteSql($"DELETE FROM dbo.logins WHERE logId={logId}");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
 
+            _context.SaveChanges();
+            return Ok();
+
+        }
+
+        [HttpPut("ChangePassword")]
+        public IActionResult ChangePassword(int logId,int oldPassword, int newPassword)
+        {
+
+            try
+            {
+
+                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={logId}");
+
+                if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+
+                else
+                {
+                    if (login.First().password == oldPassword)
+                    {
+
+                         _context.Database.ExecuteSql($"UPDATE logins SET password={newPassword} WHERE logId={logId}");
+                    }
+                    else
+                    {
+                        return Unauthorized("Credenciales incorrectas.");
+                    }
+                }   
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+
+            _context.SaveChanges();
+            return Ok();
+
+        }
 
     }
 }
