@@ -1,6 +1,5 @@
 using API.Data;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 

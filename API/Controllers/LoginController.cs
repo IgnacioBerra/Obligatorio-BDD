@@ -2,6 +2,8 @@
 using API.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -20,7 +22,6 @@ namespace API.Controllers
         public IActionResult Logeo(int id, int password)
         {
 
-
             var login = _context.logins.FirstOrDefault(user => user.logId == id);
             if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 
@@ -37,16 +38,21 @@ namespace API.Controllers
 
         [HttpPost("AddUser")]
         public IActionResult AddUser(int password)
-        {
+        {        
 
-            Logins objetoLogin = new Logins();
-            objetoLogin.password = password;
-
-            var creacion = _context.logins.Add(objetoLogin);
-
+            try
+            {
+                //var res = _context.logins.FromSqlRaw(saveUser).First();
+               var ejecucion = _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({password})");
+               
+            }
+            catch (Exception e )
+            {
+                return StatusCode(500);
+            }
+            
             _context.SaveChanges();
-
-            return Ok(objetoLogin);
+            return Ok();
 
         }
 
