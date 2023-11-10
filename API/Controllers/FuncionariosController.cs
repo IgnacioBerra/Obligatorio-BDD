@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using API.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -7,5 +8,11 @@ namespace API.Controllers
     [ApiController]
     public class FuncionariosController : ControllerBase
     {
+        private readonly DataInfo _context;
+
+        public FuncionariosController(DataInfo data)
+        {
+            _context = data;
+        }
     }
 }
