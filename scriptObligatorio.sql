@@ -50,7 +50,7 @@ create table Actualizacion_funcionario(
   fecha_actulizacion datetime not null,
   completado boolean not null,
   foreign key (CI) references Funcionarios(CI),
-  primary key (CI)
+  primary key (CI, fecha_actulizacion)
 );
 
 INSERT INTO Logins values ('admin');
