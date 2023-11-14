@@ -12,6 +12,8 @@ namespace API.Data
         }
 
         public DbSet<Funcionarios> funcionarios { get; set; }
+
+        public DbSet<ActualizacionFuncionario> actualizacion { get; set; }
         public DbSet<Agenda> agenda { get; set; }
         public DbSet<CarnetSalud> carnetSalud { get; set; }
         public DbSet<Logins> logins { get; set; }
@@ -25,6 +27,8 @@ namespace API.Data
             modelBuilder.Entity<Logins>().HasKey(l => l.logId);
             modelBuilder.Entity<Agenda>().ToTable("agenda").HasKey(a => new { a.nro });
             modelBuilder.Entity<Agenda>().HasOne(a => a.FuncId).WithMany().HasForeignKey(a => a.CI);
+            modelBuilder.Entity<ActualizacionFuncionario>().ToTable("actualizacion_funcionario").HasKey(a => new { a.CI });
+            modelBuilder.Entity<ActualizacionFuncionario>().HasOne(a => a.FuncCI).WithMany().HasForeignKey(a => a.CI);
             modelBuilder.Entity<Funcionarios>().HasKey(f => f.CI);
             modelBuilder.Entity<CarnetSalud>().ToTable("carnet_salud").HasKey(c => new { c.CI, c.fechaEmision }); ;
             modelBuilder.Entity<CarnetSalud>().HasOne(cs => cs.FuncCI).WithMany().HasForeignKey(cs => cs.CI);

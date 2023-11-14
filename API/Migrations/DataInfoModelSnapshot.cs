@@ -22,6 +22,22 @@ namespace API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("API.Clases.ActualizacionFuncionario", b =>
+                {
+                    b.Property<int>("CI")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("completado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CI");
+
+                    b.ToTable("actualizacion_funcionario", (string)null);
+                });
+
             modelBuilder.Entity("API.Clases.Agenda", b =>
                 {
                     b.Property<int>("nro")
@@ -116,9 +132,10 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("logId"));
 
-                    b.Property<int>("password")
+                    b.Property<string>("password")
+                        .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("logId");
 
@@ -142,6 +159,17 @@ namespace API.Migrations
                     b.HasKey("fechaInicio", "fechaFin");
 
                     b.ToTable("periodos_actualizacion", (string)null);
+                });
+
+            modelBuilder.Entity("API.Clases.ActualizacionFuncionario", b =>
+                {
+                    b.HasOne("API.Clases.Funcionarios", "FuncCI")
+                        .WithMany()
+                        .HasForeignKey("CI")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FuncCI");
                 });
 
             modelBuilder.Entity("API.Clases.Agenda", b =>
