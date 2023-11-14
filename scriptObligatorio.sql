@@ -45,4 +45,12 @@ create table Periodos_Actualizacion(
     primary key (Fch_Inicio, Fch_Fin)
 );
 
-INSERT INTO Logins values (123);
+create table Actualizacion_funcionario(
+  CI int not null,
+  fecha_actulizacion datetime not null,
+  completado boolean not null,
+  foreign key (CI) references Funcionarios(CI),
+  primary key (CI, fecha_actulizacion)
+);
+
+INSERT INTO Logins values ('admin');
