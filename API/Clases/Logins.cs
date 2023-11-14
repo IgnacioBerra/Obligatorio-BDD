@@ -11,6 +11,6 @@ namespace API.Clases
 
         [Required(ErrorMessage = "Se requiere ingresar contraseña")]
         [StringLength(maximumLength: 100, MinimumLength = 2)]
-        public int password { get; set; }
+        public string password { get; set; }
     }
 }
