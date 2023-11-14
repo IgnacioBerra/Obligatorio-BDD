@@ -51,7 +51,7 @@ namespace API.Controllers
         }
 
         [HttpPost("AddUser")]
-        public IActionResult AddUser(int password)
+        public IActionResult AddUser(string password)
         {        
 
             try
