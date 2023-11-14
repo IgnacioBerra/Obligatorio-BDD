@@ -48,7 +48,7 @@ create table Periodos_Actualizacion(
 create table Actualizacion_funcionario(
   CI int not null,
   fecha_actulizacion datetime not null,
-  completado boolean not null,
+  completado bit not null,
   foreign key (CI) references Funcionarios(CI),
   primary key (CI, fecha_actulizacion)
 );
