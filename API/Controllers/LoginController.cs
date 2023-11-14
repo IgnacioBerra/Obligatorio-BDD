@@ -19,7 +19,7 @@ namespace API.Controllers
         }
 
         [HttpPost("Logeo")]
-        public IActionResult Logeo(int logId, int password)
+        public IActionResult Logeo(int logId, string password)
         {
 
             
@@ -89,7 +89,7 @@ namespace API.Controllers
         }
 
         [HttpPut("ChangePassword")]
-        public IActionResult ChangePassword(int logId,int oldPassword, int newPassword)
+        public IActionResult ChangePassword(int logId,string oldPassword, string newPassword)
         {
 
             try

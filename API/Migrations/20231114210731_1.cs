@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class _1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace API.Migrations
                 {
                     logId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    password = table.Column<int>(type: "int", maxLength: 100, nullable: false)
+                    password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +60,25 @@ namespace API.Migrations
                         column: x => x.logId,
                         principalTable: "logins",
                         principalColumn: "logId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "actualizacion_funcionario",
+                columns: table => new
+                {
+                    CI = table.Column<int>(type: "int", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    completado = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_actualizacion_funcionario", x => x.CI);
+                    table.ForeignKey(
+                        name: "FK_actualizacion_funcionario_funcionarios_CI",
+                        column: x => x.CI,
+                        principalTable: "funcionarios",
+                        principalColumn: "CI",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -117,6 +136,9 @@ namespace API.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "actualizacion_funcionario");
+
             migrationBuilder.DropTable(
                 name: "agenda");
 
