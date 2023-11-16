@@ -1,0 +1,15 @@
+.cont-fecha {
+    background-color: whitesmoke;
+    height: 100%;
+    padding: 10px;
+}
+
+.btn-agregar{
+    width: 100%;
+    background-color: rgba(10, 49, 99, 1);
+    color: white;
+}
+
+.btn-agregar:hover{
+    background-color: rgb(7, 34, 70);
+}
