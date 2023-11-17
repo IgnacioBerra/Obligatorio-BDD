@@ -19,20 +19,20 @@ namespace API.Controllers
         }
 
         [HttpPost("Logeo")]
-        public IActionResult Logeo(int logId, string password)
+        public IActionResult Logeo(Logins objeto)
         {
 
             
 
             try
             {
-                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={logId}");
+                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={objeto.LogId}");
 
                 if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 
                 else
                 {
-                    if (login.First().password == password)
+                    if (login.First().Password == objeto.Password)
                     {
 
                         return Ok("Logeado correctamente");
@@ -43,7 +43,7 @@ namespace API.Controllers
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -60,7 +60,7 @@ namespace API.Controllers
                var ejecucion = _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({password})");
                
             }
-            catch (Exception e )
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -78,7 +78,7 @@ namespace API.Controllers
             {
                 var ejecucion = _context.Database.ExecuteSql($"DELETE FROM dbo.logins WHERE logId={logId}");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -101,7 +101,7 @@ namespace API.Controllers
 
                 else
                 {
-                    if (login.First().password == oldPassword)
+                    if (login.First().Password == oldPassword)
                     {
 
                          _context.Database.ExecuteSql($"UPDATE logins SET password={newPassword} WHERE logId={logId}");
@@ -113,7 +113,7 @@ namespace API.Controllers
                 }   
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

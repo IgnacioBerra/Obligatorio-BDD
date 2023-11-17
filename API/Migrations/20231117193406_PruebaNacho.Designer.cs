@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataInfo))]
-    [Migration("20231114210731_1")]
-    partial class _1
+    [Migration("20231117193406_PruebaNacho")]
+    partial class PruebaNacho
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,6 +28,12 @@ namespace API.Migrations
             modelBuilder.Entity("API.Clases.ActualizacionFuncionario", b =>
                 {
                     b.Property<int>("CI")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CI"));
+
+                    b.Property<int>("FuncCI")
                         .HasColumnType("int");
 
                     b.Property<bool>("completado")
@@ -38,24 +44,26 @@ namespace API.Migrations
 
                     b.HasKey("CI");
 
-                    b.ToTable("actualizacion_funcionario", (string)null);
+                    b.HasIndex("FuncCI");
+
+                    b.ToTable("actualizacion");
                 });
 
             modelBuilder.Entity("API.Clases.Agenda", b =>
                 {
-                    b.Property<int>("nro")
+                    b.Property<int>("Nro")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("nro"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Nro"));
 
                     b.Property<int>("CI")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaAgenda")
+                    b.Property<DateTime>("Fch_Agenda")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("nro");
+                    b.HasKey("Nro");
 
                     b.HasIndex("CI");
 
@@ -67,7 +75,7 @@ namespace API.Migrations
                     b.Property<int>("CI")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaEmision")
+                    b.Property<DateTime>("Fch_Emision")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Comprobante")
@@ -75,10 +83,15 @@ namespace API.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime>("fechaVencimiento")
+                    b.Property<DateTime>("Fch_Vencimiento")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CI", "fechaEmision");
+                    b.Property<int>("FuncCI")
+                        .HasColumnType("int");
+
+                    b.HasKey("CI", "Fch_Emision");
+
+                    b.HasIndex("FuncCI");
 
                     b.ToTable("carnet_salud", (string)null);
                 });
@@ -91,121 +104,121 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CI"));
 
-                    b.Property<string>("apellido")
+                    b.Property<string>("Apellido")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<string>("direccion")
+                    b.Property<string>("Direccion")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
 
-                    b.Property<DateTime>("fechaNacimiento")
+                    b.Property<DateTime>("Fch_Nacimiento")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("logId")
+                    b.Property<int>("LogId")
                         .HasColumnType("int");
 
-                    b.Property<string>("nombre")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<int>("telefono")
+                    b.Property<int>("Telefono")
                         .HasColumnType("int");
 
                     b.HasKey("CI");
 
-                    b.HasIndex("logId");
+                    b.HasIndex("LogId");
 
                     b.ToTable("funcionarios", (string)null);
                 });
 
             modelBuilder.Entity("API.Clases.Logins", b =>
                 {
-                    b.Property<int>("logId")
+                    b.Property<int>("LogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("logId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LogId"));
 
-                    b.Property<string>("password")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("logId");
+                    b.HasKey("LogId");
 
                     b.ToTable("logins", (string)null);
                 });
 
             modelBuilder.Entity("API.Clases.PeriodosActualizacion", b =>
                 {
-                    b.Property<DateTime>("fechaInicio")
+                    b.Property<DateTime>("Fch_Inicio")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("fechaFin")
+                    b.Property<DateTime>("Fch_Fin")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("año")
+                    b.Property<int>("Año")
                         .HasColumnType("int");
 
-                    b.Property<int>("semestre")
+                    b.Property<int>("Semestre")
                         .HasColumnType("int");
 
-                    b.HasKey("fechaInicio", "fechaFin");
+                    b.HasKey("Fch_Inicio", "Fch_Fin");
 
                     b.ToTable("periodos_actualizacion", (string)null);
                 });
 
             modelBuilder.Entity("API.Clases.ActualizacionFuncionario", b =>
                 {
-                    b.HasOne("API.Clases.Funcionarios", "FuncCI")
+                    b.HasOne("API.Clases.Funcionarios", "Funcionarios")
                         .WithMany()
-                        .HasForeignKey("CI")
+                        .HasForeignKey("FuncCI")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FuncCI");
+                    b.Navigation("Funcionarios");
                 });
 
             modelBuilder.Entity("API.Clases.Agenda", b =>
                 {
-                    b.HasOne("API.Clases.Funcionarios", "FuncId")
+                    b.HasOne("API.Clases.Funcionarios", "Funcionarios")
                         .WithMany()
                         .HasForeignKey("CI")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FuncId");
+                    b.Navigation("Funcionarios");
                 });
 
             modelBuilder.Entity("API.Clases.CarnetSalud", b =>
                 {
-                    b.HasOne("API.Clases.Funcionarios", "FuncCI")
+                    b.HasOne("API.Clases.Funcionarios", "Funcionarios")
                         .WithMany()
-                        .HasForeignKey("CI")
+                        .HasForeignKey("FuncCI")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FuncCI");
+                    b.Navigation("Funcionarios");
                 });
 
             modelBuilder.Entity("API.Clases.Funcionarios", b =>
                 {
-                    b.HasOne("API.Clases.Logins", "Log")
+                    b.HasOne("API.Clases.Logins", "Logins")
                         .WithMany()
-                        .HasForeignKey("logId")
+                        .HasForeignKey("LogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Log");
+                    b.Navigation("Logins");
                 });
 #pragma warning restore 612, 618
         }

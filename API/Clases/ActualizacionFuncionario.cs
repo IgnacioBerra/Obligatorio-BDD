@@ -10,12 +10,13 @@ namespace API.Clases
     {
 
         [Required(ErrorMessage = "Se requiere ingresar cedula de identidad ")]
+        [Key]
         public int CI { get; set; }
 
 
-        [ForeignKey("CI")]
-        public Funcionarios FuncCI { get; set; }
-
+        [ForeignKey("Funcionarios")]
+        public int FuncCI { get; set; }
+        public Funcionarios Funcionarios { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de inicio")]
         public DateTime fecha_actualizacion { get; set; }
