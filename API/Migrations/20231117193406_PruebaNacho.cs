@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Migrations
 {
     /// <inheritdoc />
-    public partial class _1 : Migration
+    public partial class PruebaNacho : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,27 +15,27 @@ namespace API.Migrations
                 name: "logins",
                 columns: table => new
                 {
-                    logId = table.Column<int>(type: "int", nullable: false)
+                    LogId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_logins", x => x.logId);
+                    table.PrimaryKey("PK_logins", x => x.LogId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "periodos_actualizacion",
                 columns: table => new
                 {
-                    fechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    fechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    año = table.Column<int>(type: "int", nullable: false),
-                    semestre = table.Column<int>(type: "int", nullable: false)
+                    Fch_Inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Fch_Fin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Año = table.Column<int>(type: "int", nullable: false),
+                    Semestre = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_periodos_actualizacion", x => new { x.fechaInicio, x.fechaFin });
+                    table.PrimaryKey("PK_periodos_actualizacion", x => new { x.Fch_Inicio, x.Fch_Fin });
                 });
 
             migrationBuilder.CreateTable(
@@ -44,39 +44,41 @@ namespace API.Migrations
                 {
                     CI = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    apellido = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    fechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    direccion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    telefono = table.Column<int>(type: "int", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
-                    logId = table.Column<int>(type: "int", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Fch_Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Telefono = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    LogId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_funcionarios", x => x.CI);
                     table.ForeignKey(
-                        name: "FK_funcionarios_logins_logId",
-                        column: x => x.logId,
+                        name: "FK_funcionarios_logins_LogId",
+                        column: x => x.LogId,
                         principalTable: "logins",
-                        principalColumn: "logId",
+                        principalColumn: "LogId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "actualizacion_funcionario",
+                name: "actualizacion",
                 columns: table => new
                 {
-                    CI = table.Column<int>(type: "int", nullable: false),
+                    CI = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FuncCI = table.Column<int>(type: "int", nullable: false),
                     fecha_actualizacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     completado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_actualizacion_funcionario", x => x.CI);
+                    table.PrimaryKey("PK_actualizacion", x => x.CI);
                     table.ForeignKey(
-                        name: "FK_actualizacion_funcionario_funcionarios_CI",
-                        column: x => x.CI,
+                        name: "FK_actualizacion_funcionarios_FuncCI",
+                        column: x => x.FuncCI,
                         principalTable: "funcionarios",
                         principalColumn: "CI",
                         onDelete: ReferentialAction.Cascade);
@@ -86,14 +88,14 @@ namespace API.Migrations
                 name: "agenda",
                 columns: table => new
                 {
-                    nro = table.Column<int>(type: "int", nullable: false)
+                    Nro = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CI = table.Column<int>(type: "int", nullable: false),
-                    fechaAgenda = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Fch_Agenda = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CI = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_agenda", x => x.nro);
+                    table.PrimaryKey("PK_agenda", x => x.Nro);
                     table.ForeignKey(
                         name: "FK_agenda_funcionarios_CI",
                         column: x => x.CI,
@@ -107,20 +109,26 @@ namespace API.Migrations
                 columns: table => new
                 {
                     CI = table.Column<int>(type: "int", nullable: false),
-                    fechaEmision = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    fechaVencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Comprobante = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                    Fch_Emision = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Fch_Vencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Comprobante = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    FuncCI = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_carnet_salud", x => new { x.CI, x.fechaEmision });
+                    table.PrimaryKey("PK_carnet_salud", x => new { x.CI, x.Fch_Emision });
                     table.ForeignKey(
-                        name: "FK_carnet_salud_funcionarios_CI",
-                        column: x => x.CI,
+                        name: "FK_carnet_salud_funcionarios_FuncCI",
+                        column: x => x.FuncCI,
                         principalTable: "funcionarios",
                         principalColumn: "CI",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_actualizacion_FuncCI",
+                table: "actualizacion",
+                column: "FuncCI");
 
             migrationBuilder.CreateIndex(
                 name: "IX_agenda_CI",
@@ -128,16 +136,21 @@ namespace API.Migrations
                 column: "CI");
 
             migrationBuilder.CreateIndex(
-                name: "IX_funcionarios_logId",
+                name: "IX_carnet_salud_FuncCI",
+                table: "carnet_salud",
+                column: "FuncCI");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_funcionarios_LogId",
                 table: "funcionarios",
-                column: "logId");
+                column: "LogId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "actualizacion_funcionario");
+                name: "actualizacion");
 
             migrationBuilder.DropTable(
                 name: "agenda");

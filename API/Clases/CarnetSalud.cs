@@ -13,16 +13,17 @@ namespace API.Clases
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de emision")]
         [Key]
-        public DateTime fechaEmision { get; set; }
+        public DateTime Fch_Emision { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de vencimiento")]
-        public DateTime fechaVencimiento { get; set; }
+        public DateTime Fch_Vencimiento { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar comprobante")]
         [StringLength(maximumLength:500, MinimumLength = 2)]
         public string Comprobante { get; set; }
 
-        [ForeignKey("CI")]
-        public Funcionarios FuncCI { get; set; }
+        [ForeignKey("Funcionarios")]
+        public int FuncCI { get; set; }
+        public Funcionarios Funcionarios { get; set; }
     }
 }
