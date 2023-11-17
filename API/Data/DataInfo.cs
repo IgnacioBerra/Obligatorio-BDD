@@ -22,20 +22,17 @@ namespace API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Funcionarios>().ToTable("funcionarios").HasKey(f => new { f.CI });
-            modelBuilder.Entity<Funcionarios>().HasOne(f => f.Log).WithMany().HasForeignKey(f => f.logId);
-            modelBuilder.Entity<Logins>().HasKey(l => l.logId);
-            modelBuilder.Entity<Agenda>().ToTable("agenda").HasKey(a => new { a.nro });
-            modelBuilder.Entity<Agenda>().HasOne(a => a.FuncId).WithMany().HasForeignKey(a => a.CI);
-            modelBuilder.Entity<ActualizacionFuncionario>().ToTable("actualizacion_funcionario").HasKey(a => new { a.CI });
-            modelBuilder.Entity<ActualizacionFuncionario>().HasOne(a => a.FuncCI).WithMany().HasForeignKey(a => a.CI);
-            modelBuilder.Entity<Funcionarios>().HasKey(f => f.CI);
-            modelBuilder.Entity<CarnetSalud>().ToTable("carnet_salud").HasKey(c => new { c.CI, c.fechaEmision }); ;
-            modelBuilder.Entity<CarnetSalud>().HasOne(cs => cs.FuncCI).WithMany().HasForeignKey(cs => cs.CI);
-            modelBuilder.Entity<Funcionarios>().HasKey(f => f.CI);
-            modelBuilder.Entity<Logins>().ToTable("logins").HasKey(l => new { l.logId });
-            modelBuilder.Entity<PeriodosActualizacion>().ToTable("periodos_actualizacion").HasKey(p => new { p.fechaInicio, p.fechaFin });
+            modelBuilder.Entity<Funcionarios>().ToTable("funcionarios").HasKey(f =>  f.CI );
+            modelBuilder.Entity<Funcionarios>().HasOne(f => f.Logins).WithMany().HasForeignKey(l => l.LogId);
+            modelBuilder.Entity<Logins>().ToTable("logins").HasKey(l => l.LogId);
+            modelBuilder.Entity<PeriodosActualizacion>().ToTable("periodos_actualizacion").HasKey(p => new { p.Fch_Inicio, p.Fch_Fin });
+            modelBuilder.Entity<ActualizacionFuncionario>().HasOne(a => a.Funcionarios).WithMany().HasForeignKey(a => a.FuncCI);
+            modelBuilder.Entity<ActualizacionFuncionario>().HasKey(a => a.CI);
+            modelBuilder.Entity<Agenda>().ToTable("agenda").HasKey(a =>  a.Nro );
+            modelBuilder.Entity<Agenda>().HasOne(a => a.Funcionarios).WithMany().HasForeignKey(a => a.CI);
+            modelBuilder.Entity<CarnetSalud>().ToTable("carnet_salud").HasKey(c => new { c.CI, c.Fch_Emision }); ;
+            modelBuilder.Entity<CarnetSalud>().HasOne(cs => cs.Funcionarios).WithMany().HasForeignKey(cs => cs.FuncCI);
+           
         }
-
     }
 }

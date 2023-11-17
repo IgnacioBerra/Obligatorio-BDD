@@ -7,10 +7,10 @@ namespace API.Clases
     public class Logins
     {
         [Key]
-        public int logId { get; set; }
+        public int LogId { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar contraseña")]
         [StringLength(maximumLength: 100, MinimumLength = 2)]
-        public string password { get; set; }
+        public string Password { get; set; }
     }
 }

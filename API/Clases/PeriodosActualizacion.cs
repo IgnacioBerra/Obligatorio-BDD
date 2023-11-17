@@ -6,19 +6,19 @@ namespace API.Clases
     public class PeriodosActualizacion
     {
         [Required(ErrorMessage = "Se requiere ingresar año")]
-        public int año { get; set; }
+        public int Año { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar semestre")]
-        public int semestre { get; set; }
+        public int Semestre { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de inicio")]
         [Key]
-        public DateTime fechaInicio { get; set; }
+        public DateTime Fch_Inicio { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de fin")]
 
         [Key]
-        public DateTime fechaFin { get; set; }
+        public DateTime Fch_Fin { get; set; }
 
     }
 }
