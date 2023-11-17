@@ -8,15 +8,14 @@ namespace API.Clases
     public class Agenda
     {
         [Key]
-        public int nro { get; set; }
-
-        [Required(ErrorMessage = "Se requiere ingresar cedula de identidad ")]
-        public int CI { get; set; }
+        public int Nro { get; set; }
 
         [Required(ErrorMessage = "Se requiere ingresar fecha de agenda ")]
-        public DateTime fechaAgenda { get; set; }
+        public DateTime Fch_Agenda { get; set; }
 
-        [ForeignKey("CI")]
-        public Funcionarios FuncId { get; set; }
+        [Required(ErrorMessage = "Se requiere ingresar cedula de identidad ")]
+        [ForeignKey("Funcionarios")]
+        public int CI { get; set; }
+        public Funcionarios Funcionarios { get; set; }  
     }
 }
