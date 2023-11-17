@@ -1,0 +1,15 @@
+<div class="fondo">
+    <div class="container cont-date rounded shadow-sm">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-6">{{ fechaActual | date:'medium' }} </h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-10">
+                <p >Faltan: {{ tiempoRestanteAct.dias }} días, {{ tiempoRestanteAct.horas }} horas y {{ tiempoRestanteAct.minutos }} minutos para que el periodo de actualización finalice</p>
+            </div>
+        </div>
+    </div>
+</div>
