@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Migrations
 {
     /// <inheritdoc />
-    public partial class PruebaNacho : Migration
+    public partial class Migracion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,8 +42,7 @@ namespace API.Migrations
                 name: "funcionarios",
                 columns: table => new
                 {
-                    CI = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CI = table.Column<int>(type: "int", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Apellido = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Fch_Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -67,8 +66,7 @@ namespace API.Migrations
                 name: "actualizacion",
                 columns: table => new
                 {
-                    CI = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CI = table.Column<int>(type: "int", nullable: false),
                     FuncCI = table.Column<int>(type: "int", nullable: false),
                     fecha_actualizacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     completado = table.Column<bool>(type: "bit", nullable: false)

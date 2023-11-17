@@ -19,14 +19,13 @@ namespace API.Controllers
         }
 
         [HttpPost("AddDate")]
-        public IActionResult addDate(DateTime fecha)
+        public IActionResult addDate(int año, string semestre, DateTime fechaInicio, DateTime fechaFin)
         {
-
 
 
             try
             {
-                //var login = _context.periodosActualizacion.FromSqlRaw();
+                var date = _context.periodosActualizacion.FromSqlRaw($"");
 
                 
             }
