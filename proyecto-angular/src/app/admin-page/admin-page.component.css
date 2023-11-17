@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Cabin&family=Calistoga&family=Francois+One&family=Patua+One&display=swap');
+
+.fondo {
+    background-color: rgba(10, 49, 99, 1);
+}
+
+
+.fondo,
+.cont-flu,
+.row-general,
+.col-general,
+.barra-lateral {
+    height: 100vh;
+}
+
+
+
+.col-general {
+    background-color: white;
+    /*margin-left: -12px;*/
+}
+
+.btn-logout {
+    background-color: none;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-logout:hover {
+    background-color: rgb(6, 32, 66);
+    width: 100%;
+}
+
+/**************************/
+
+.navbar-brand {
+    font-family: 'Cabin', sans-serif;
+    font-size: 30px;
+    color: white;
+}
+
+
+
+@media (min-width: 992px) {
+
+    .navbar,
+    .navbar-collapse {
+        flex-direction: column;
+    }
+
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: column;
+    }
+
+    .navbar {
+        background-color: rgba(10, 49, 99, 1);
+        width: 100%;
+        height: 100vh;
+        /*align-items: flex-start;*/
+    }
+
+    .navbar-brand {
+        margin-left: 0.5em;
+        padding-bottom: 0;
+        border-bottom: 4px solid #464646;
+    }
+
+}
