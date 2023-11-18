@@ -47,10 +47,10 @@ create table Periodos_Actualizacion(
 
 create table Actualizacion_funcionario(
   CI int not null,
-  fecha_actulizacion datetime not null,
+  fecha_actualizacion datetime not null,
   completado bit not null,
   foreign key (CI) references Funcionarios(CI),
-  primary key (CI, fecha_actulizacion)
+  primary key (CI, fecha_actualizacion)
 );
 
 INSERT INTO Logins values ('admin');
