@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using API.Controllers;
 
 namespace API;
 using Hangfire;
@@ -6,7 +7,13 @@ using Hangfire.SqlServer;
 using System.Net.Mail;
 public class HangFireScheduler
 {
+
     public static void ScheduleFire()
+    {
+        
+    }
+
+    public static void ScheduleFire1()
     {
         SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
         smtpClient.EnableSsl = true;
