@@ -18,6 +18,7 @@ namespace API.Clases
         public int FuncCI { get; set; }
         public Funcionarios Funcionarios { get; set; }
         */
+
         [Required(ErrorMessage = "Se requiere ingresar fecha de inicio")]
         public DateTime fecha_actualizacion { get; set; }
 
