@@ -50,7 +50,9 @@ app.UseHangfireServer();
 app.UseHangfireDashboard(); // Optional: Use Hangfire dashboard for monitoring jobs
 
 app.MapControllers();
-
-RecurringJob.AddOrUpdate("powerfuljob", () => HangFireScheduler.ScheduleFire(),"*/2 * * * *");
+// A las 3 am pega a la base de datos para saber que mails debe enviar
+RecurringJob.AddOrUpdate("EmailRetriever", () => HangFireScheduler.getEmailsForNotification(connectionString),"*/2 * * * *");
+// A las 15:30 envía los mails
+RecurringJob.AddOrUpdate("SendMails", () => HangFireScheduler.sendEmails(), "*/5 * * * *");
 
 app.Run();
