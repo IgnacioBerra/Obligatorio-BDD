@@ -12,7 +12,8 @@ import { CambiarFechaComponent } from './cambiar-fecha/cambiar-fecha.component';
 import { AgregarFechaComponent } from './agregar-fecha/agregar-fecha.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { FormCarneSaludComponent } from './form-carne-salud/form-carne-salud.component';
-import { UserPageComponent } from './user-page/user-page.component';
+import { AgendaFormComponent } from './agenda-form/agenda-form.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserPageComponent } from './user-page/user-page.component';
     AgregarFechaComponent,
     AgendaComponent,
     FormCarneSaludComponent,
-    UserPageComponent
+    AgendaFormComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
