@@ -44,15 +44,12 @@ namespace API.Controllers
             try
             {
                 return _context.actualizacion.FromSqlRaw($"SELECT CI,fecha_actualizacion,completado FROM dbo.actualizacion_funcionario").ToList();
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return new List<ActualizacionFuncionario>();
             }
-
         }
-
     }
 }

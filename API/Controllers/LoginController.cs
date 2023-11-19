@@ -21,9 +21,6 @@ namespace API.Controllers
         [HttpPost("Logeo")]
         public IActionResult Logeo(Logins objeto)
         {
-
-            
-
             try
             {
                 var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={objeto.LogId}");
