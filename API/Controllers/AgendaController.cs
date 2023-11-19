@@ -1,4 +1,5 @@
-﻿using API.Data;
+﻿using API.Clases;
+using API.Data;
 using API.JSONRequests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,22 @@ namespace API.Controllers
                 return StatusCode(500);
             }
             
+        }
+
+        [HttpGet("ConseguirAgenda")]
+        public List<Agenda> ConseguirAgenda()
+        {
+            try
+            {
+                return _context.agenda.FromSqlRaw($"SELECT * FROM dbo.agenda").ToList();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<Agenda>();
+            }
+
         }
     }
 }
