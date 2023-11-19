@@ -7,7 +7,8 @@ import { DisplayFuncionariosComponent } from "./display-funcionarios/display-fun
 import { AgregarFechaComponent } from "./agregar-fecha/agregar-fecha.component";
 import { AgendaComponent } from "./agenda/agenda.component";
 import { FormCarneSaludComponent } from "./form-carne-salud/form-carne-salud.component";
-import { UserPageComponent } from "./user-page/user-page.component";
+import { UserFormComponent } from "./user-form/user-form.component";
+import { AgendaFormComponent } from "./agenda-form/agenda-form.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'displayFunc', component: DisplayFuncionariosComponent },
   { path: 'agregarFecha', component: AgregarFechaComponent },
   { path: 'carneSaludForm', component: FormCarneSaludComponent },
-  { path: 'userIndex', component: UserPageComponent }
+  { path: 'userForm', component: UserFormComponent },
+  { path: 'agendaForm', component: AgendaFormComponent }
 ];
 
 @NgModule({
