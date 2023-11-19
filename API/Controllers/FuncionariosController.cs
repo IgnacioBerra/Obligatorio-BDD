@@ -55,5 +55,41 @@ namespace API.Controllers
             
         }
 
+        [HttpGet("ConseguirFuncionariosAgenda")]
+        public List<Funcionarios> ConseguirFuncionariosAgenda()
+        {
+            try
+            {
+                 // Falta que retorne con la columna de Fch_Agenda.
+                var resultado = _context.funcionarios.FromSqlRaw($"SELECT DISTINCT funcionarios.* FROM dbo.funcionarios INNER JOIN dbo.agenda ON funcionarios.CI = agenda.CI").ToList();
+
+                return resultado;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<Funcionarios>();
+            }
+
+        }
+
+        [HttpGet("ConseguirFuncionariosPorFecha")]
+        public List<Funcionarios> ConseguirFuncionariosPorFecha(string fecha )
+        {
+            try
+            { 
+                var resultado = _context.funcionarios.FromSqlRaw($"SELECT DISTINCT funcionarios.* FROM dbo.funcionarios INNER JOIN dbo.agenda ON funcionarios.CI = agenda.CI WHERE agenda.Fch_Agenda='{fecha}'").ToList();
+
+                return resultado;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<Funcionarios>();
+            }
+
+        }
+
     }
 }
