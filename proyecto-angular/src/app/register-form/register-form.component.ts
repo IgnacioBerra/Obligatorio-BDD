@@ -22,7 +22,7 @@ export class RegisterFormComponent {
     if (this.carnetsalud) {
       this.router.navigate(['/carneSaludForm'], { relativeTo: this.route });
     } else {
-      this.router.navigate(['/userIndex'], { relativeTo: this.route }); //lo manda a agendarse en la clinica ucu
+      this.router.navigate(['/agendaForm'], { relativeTo: this.route }); //lo manda a agendarse en la clinica ucu
     }
 
   }

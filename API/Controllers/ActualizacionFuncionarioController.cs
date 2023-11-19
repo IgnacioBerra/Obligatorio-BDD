@@ -1,13 +1,9 @@
-﻿using API.Data;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using API.Clases;
 using API.Data;
 using API.JSONRequests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using API.Clases;
 
 namespace API.Controllers
 {
@@ -22,31 +18,38 @@ namespace API.Controllers
           {
               _context = data;
           }
-            
-          
-          // Falta mandarle más mecha a esto, me voy a dormir
-          [HttpGet("getEmailsForNotification")]
-          public IActionResult getEmailsForNotification()
-          {
-              try
-              { 
-                  var mails = _context.funcionarios.FromSqlRaw($"Select Email from dbo.Funcionarios f inner join dbo.Actualizacion_funcionario a on a.CI = f.CI where a.completado = 0").Select(f => f.Email).ToList();
-                  string[] emails = new string[mails.Count()];
-                  int i = 0;
-                  foreach (var item in mails)
-                  {
-                      Console.WriteLine(item);
-                      emails[i]=item.ToString();
-                      i++;
-                  }
 
-              }
-              catch (Exception e)
-              {
-                  Console.WriteLine(e.Message);
-              }
-              return Ok();
-          }
-        
+
+
+        [HttpPost("AñadirActualizacion")]
+        public IActionResult Añadir(ActualizacionJSON aj)
+        {
+            try
+            {
+                 _context.Database.ExecuteSql($"INSERT INTO dbo.Actualizacion_Funcionario (CI,fecha_actualizacion,completado) VALUES ({aj.CI},{aj.fecha_actualizacion},{aj.completado})");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return StatusCode(500);
+
+            }
+            return Ok();
+
+        }
+
+        [HttpGet("GetActualizaciones")]
+        public List<ActualizacionFuncionario> GetActualizaciones()
+        {
+            try
+            {
+                return _context.actualizacion.FromSqlRaw($"SELECT CI,fecha_actualizacion,completado FROM dbo.actualizacion_funcionario").ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<ActualizacionFuncionario>();
+            }
+        }
     }
 }

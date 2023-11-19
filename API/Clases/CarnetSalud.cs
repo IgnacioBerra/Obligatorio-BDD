@@ -22,8 +22,10 @@ namespace API.Clases
         [StringLength(maximumLength:500, MinimumLength = 2)]
         public string Comprobante { get; set; }
 
+        /*
         [ForeignKey("Funcionarios")]
         public int FuncCI { get; set; }
         public Funcionarios Funcionarios { get; set; }
+        */
     }
 }

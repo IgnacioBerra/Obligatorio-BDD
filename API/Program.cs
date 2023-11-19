@@ -16,9 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 35));
 builder.Services.AddDbContext<DataInfo>(options =>
 {
-    options.UseSqlServer(connectionString);
-    //options.UseMySql(connectionString, serverVersion);
-    
+    options.UseSqlServer(connectionString);    
 });
 
 var hangfireConnectionString = builder.Configuration.GetConnectionString("HangfireConnection");
@@ -51,8 +49,8 @@ app.UseHangfireDashboard(); // Optional: Use Hangfire dashboard for monitoring j
 
 app.MapControllers();
 // A las 3 am pega a la base de datos para saber que mails debe enviar
-RecurringJob.AddOrUpdate("EmailRetriever", () => HangFireScheduler.getEmailsForNotification(connectionString),"*/2 * * * *");
+RecurringJob.AddOrUpdate("EmailRetriever", () => HangFireScheduler.getEmailsForNotification(connectionString),"0 3 * * *");
 // A las 15:30 envía los mails
-RecurringJob.AddOrUpdate("SendMails", () => HangFireScheduler.sendEmails(), "*/5 * * * *");
+RecurringJob.AddOrUpdate("SendMails", () => HangFireScheduler.sendEmails(), "30 15 * * *");
 
 app.Run();
