@@ -30,9 +30,6 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CI"));
 
-                    b.Property<int>("FuncCI")
-                        .HasColumnType("int");
-
                     b.Property<bool>("completado")
                         .HasColumnType("bit");
 
@@ -41,9 +38,7 @@ namespace API.Migrations
 
                     b.HasKey("CI");
 
-                    b.HasIndex("FuncCI");
-
-                    b.ToTable("actualizacion");
+                    b.ToTable("actualizacion_funcionario", (string)null);
                 });
 
             modelBuilder.Entity("API.Clases.Agenda", b =>
@@ -83,12 +78,7 @@ namespace API.Migrations
                     b.Property<DateTime>("Fch_Vencimiento")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FuncCI")
-                        .HasColumnType("int");
-
                     b.HasKey("CI", "Fch_Emision");
-
-                    b.HasIndex("FuncCI");
 
                     b.ToTable("carnet_salud", (string)null);
                 });
@@ -174,33 +164,11 @@ namespace API.Migrations
                     b.ToTable("periodos_actualizacion", (string)null);
                 });
 
-            modelBuilder.Entity("API.Clases.ActualizacionFuncionario", b =>
-                {
-                    b.HasOne("API.Clases.Funcionarios", "Funcionarios")
-                        .WithMany()
-                        .HasForeignKey("FuncCI")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Funcionarios");
-                });
-
             modelBuilder.Entity("API.Clases.Agenda", b =>
                 {
                     b.HasOne("API.Clases.Funcionarios", "Funcionarios")
                         .WithMany()
                         .HasForeignKey("CI")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Funcionarios");
-                });
-
-            modelBuilder.Entity("API.Clases.CarnetSalud", b =>
-                {
-                    b.HasOne("API.Clases.Funcionarios", "Funcionarios")
-                        .WithMany()
-                        .HasForeignKey("FuncCI")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
