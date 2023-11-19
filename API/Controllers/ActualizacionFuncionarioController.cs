@@ -23,17 +23,19 @@ namespace API.Controllers
               _context = data;
           }
             
+          
+          // Falta mandarle más mecha a esto, me voy a dormir
           [HttpGet("getEmailsForNotification")]
           public IActionResult getEmailsForNotification()
           {
               try
               { 
-                  var mails = _context.actualizacion.FromSqlRaw($"Select f.Email, f.CI FuncCI from dbo.Funcionarios f inner join dbo.Actualizacion_funcionario a on a.CI = f.CI where completado = 0");
+                  var mails = _context.funcionarios.FromSqlRaw($"Select Email from dbo.Funcionarios f inner join dbo.Actualizacion_funcionario a on a.CI = f.CI where a.completado = 0").Select(f => f.Email).ToList();
                   string[] emails = new string[mails.Count()];
                   int i = 0;
                   foreach (var item in mails)
                   {
-                      Console.WriteLine(item.ToString());
+                      Console.WriteLine(item);
                       emails[i]=item.ToString();
                       i++;
                   }
