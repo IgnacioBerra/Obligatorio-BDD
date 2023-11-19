@@ -1,4 +1,6 @@
+using API;
 using API.Data;
+using Hangfire;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,18 @@ builder.Services.AddDbContext<DataInfo>(options =>
     //options.UseMySql(connectionString, serverVersion);
     
 });
+
+var hangfireConnectionString = builder.Configuration.GetConnectionString("HangfireConnection");
+builder.Services.AddHangfire(config =>
+    {
+        config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(hangfireConnectionString);
+    }
+);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +45,12 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseHangfireServer();
+
+app.UseHangfireDashboard(); // Optional: Use Hangfire dashboard for monitoring jobs
+
 app.MapControllers();
+
+RecurringJob.AddOrUpdate("powerfuljob", () => HangFireScheduler.ScheduleFire(),"*/2 * * * *");
 
 app.Run();
