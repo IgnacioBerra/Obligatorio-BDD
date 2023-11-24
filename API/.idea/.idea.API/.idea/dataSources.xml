@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="clinica_ucu_salud@LAPTOP-2LV4RRV2" uuid="8282c02c-fbe3-4dbf-bd10-fb5b041f12eb">
+      <driver-ref>sqlserver.jb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
+      <jdbc-url>Server=LAPTOP-2LV4RRV2\SQLEXPRESS;Database=clinica_ucu_salud</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="HangfireTest@LAPTOP-2LV4RRV2" uuid="d05398ed-c43a-43d9-959f-8eaddf4c6b50">
+      <driver-ref>sqlserver.jb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
+      <jdbc-url>Server=LAPTOP-2LV4RRV2\SQLEXPRESS;Database=HangfireTest</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
