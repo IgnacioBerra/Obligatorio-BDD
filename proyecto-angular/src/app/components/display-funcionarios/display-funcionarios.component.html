@@ -1,0 +1,15 @@
+<div class="container cont-display shadow-sm rounded">
+    <div class="row">
+        <div class="col">
+            <h2 class="titulo">Funcionarios</h2>
+            <div class="scroll-div">
+                <div class="cont-funcionarios" *ngFor="let funcionario of funcionarios">
+                    <p class="text-func">Cédula: {{funcionario.ci}}</p>
+                    <p class="text-func">Formulario completado: {{funcionario.completado}}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

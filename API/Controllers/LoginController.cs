@@ -18,31 +18,31 @@ namespace API.Controllers
             _context = data;
         }
 
-        [HttpPost("Logeo")]
+       [HttpPost("Logeo")]
         public IActionResult Logeo(Logins objeto)
         {
             try
             {
                 var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={objeto.LogId}");
 
-                if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+                if (login == null) { return Unauthorized(new { message = "No se han encontrado usuarios con el logId especificado." }); }
 
                 else
                 {
                     if (login.First().Password == objeto.Password)
                     {
 
-                        return Ok("Logeado correctamente");
+                        return Ok(new { message = "Logeado correctamente" }); 
                     }
                     else
                     {
-                        return Unauthorized("Credenciales incorrectas.");
+                        return Unauthorized(new { message = "Credenciales incorrectas." });
                     }
                 }
             }
             catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(500, new { message = "Error interno del servidor." });
             }
         
         }
