@@ -17,7 +17,7 @@ import { FormCarneSaludComponent } from './components/form-carne-salud/form-carn
 import { AgendaFormComponent } from './components/agenda-form/agenda-form.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -39,12 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    ToastrModule.forRoot({
-      timeOut: 1000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true
-    }),
+    HttpClientModule,    
     BrowserAnimationsModule
   ],
   providers: [],

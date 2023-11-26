@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A62bU5NUX7mMJkKuOLT+mzADFb9JvGwgv1ASrH1y2xJscOygpSSGtru2KvpYP7cB+dGcUVtFq7M9FI96fYU90A==",
+  "dgSpecHash": "kRcKRihy5IbL0U0mXbWLtUAHjS+a0lqzAwvynh1PiiknGEyyRRMajLEtMn/X0aTE946Xv5jzGvyCFslONTeJDQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\Nueva carpeta\\por ultima vez obligatorio-BDD\\Obligatorio-BDD\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\ULTIMA VERSION OBLIGATORIO DEFINITIVA\\Obligatorio-BDD\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USUARIO\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\Nueva carpeta\\por ultima vez obligatorio-BDD\\Obligatorio-BDD\\API\\API.csproj": {}
+    "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\ULTIMA VERSION OBLIGATORIO DEFINITIVA\\Obligatorio-BDD\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\Nueva carpeta\\por ultima vez obligatorio-BDD\\Obligatorio-BDD\\API\\API.csproj": {
+    "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\ULTIMA VERSION OBLIGATORIO DEFINITIVA\\Obligatorio-BDD\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\Nueva carpeta\\por ultima vez obligatorio-BDD\\Obligatorio-BDD\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\ULTIMA VERSION OBLIGATORIO DEFINITIVA\\Obligatorio-BDD\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\Nueva carpeta\\por ultima vez obligatorio-BDD\\Obligatorio-BDD\\API\\API.csproj",
+        "projectPath": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\ULTIMA VERSION OBLIGATORIO DEFINITIVA\\Obligatorio-BDD\\API\\API.csproj",
         "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\Nueva carpeta\\por ultima vez obligatorio-BDD\\Obligatorio-BDD\\API\\obj\\",
+        "outputPath": "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\ULTIMA VERSION OBLIGATORIO DEFINITIVA\\Obligatorio-BDD\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
