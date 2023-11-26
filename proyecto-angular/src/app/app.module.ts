@@ -14,6 +14,7 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { FormCarneSaludComponent } from './form-carne-salud/form-carne-salud.component';
 import { AgendaFormComponent } from './agenda-form/agenda-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { DisplayAllFuncionariosComponent } from './display-all-funcionarios/display-all-funcionarios.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     AgendaComponent,
     FormCarneSaludComponent,
     AgendaFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    DisplayAllFuncionariosComponent
   ],
   imports: [
     BrowserModule,

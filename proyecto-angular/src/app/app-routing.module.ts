@@ -9,6 +9,7 @@ import { AgendaComponent } from "./agenda/agenda.component";
 import { FormCarneSaludComponent } from "./form-carne-salud/form-carne-salud.component";
 import { UserFormComponent } from "./user-form/user-form.component";
 import { AgendaFormComponent } from "./agenda-form/agenda-form.component";
+import { DisplayAllFuncionariosComponent } from "./display-all-funcionarios/display-all-funcionarios.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'displayFunc', pathMatch: 'full' },
       { path: 'displayFunc', component: DisplayFuncionariosComponent },
-      { path: 'verAgenda', component: AgendaComponent }
+      { path: 'verAgenda', component: AgendaComponent },
+      { path: 'displayAllFunc', component: DisplayAllFuncionariosComponent }
     ]
   },
   { path: 'displayFunc', component: DisplayFuncionariosComponent },
