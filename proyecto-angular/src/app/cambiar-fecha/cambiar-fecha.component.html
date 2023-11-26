@@ -3,16 +3,10 @@
         <div class="row">
             <div class="col">
                 <p>Fecha de actualización</p>
-                <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" aria-describedby="button-addon2"
-                        [disabled]="isDisabled">
-                        <option selected>2/11/2023-14/11/2023</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                    <button class="btn btn-outline-secondary" (click)="cambiarFecha()" type="button"
-                        id="button-addon2">{{buttonText}}</button>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInputDisabled" placeholder="name@example.com"
+                        disabled>
+                    <label for="floatingInputDisabled">Fecha que recibe desde la base de datos</label>
                 </div>
             </div>
         </div>

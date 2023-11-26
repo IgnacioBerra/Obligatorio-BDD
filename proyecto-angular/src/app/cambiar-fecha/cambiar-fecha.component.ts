@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -8,13 +8,7 @@ import { Component} from '@angular/core';
 })
 export class CambiarFechaComponent {
 
-  isDisabled = true;
-  buttonText = 'Modificar';
-  
-  cambiarFecha() {
-    this.isDisabled = !this.isDisabled;
-    this.buttonText = this.isDisabled ? 'Modificar' : 'Guardar';
-  }
+
 
 
 }
