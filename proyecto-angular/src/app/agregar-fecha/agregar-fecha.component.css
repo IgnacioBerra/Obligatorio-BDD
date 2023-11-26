@@ -33,3 +33,11 @@ h1 {
 .btn-guardar:hover{
     background-color: rgb(7, 37, 75);
 }
+
+
+.goBack{
+    color: white;
+}
+.goBack:hover{
+    color: rgb(224, 221, 221);
+}
