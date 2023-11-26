@@ -29,14 +29,15 @@ namespace API.Controllers
                       _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({f.Password})");
                       var logId =   _context.logins.FromSql($"SELECT TOP 1 * FROM dbo.logins ORDER BY logId DESC").First().LogId;
                       _context.Database.ExecuteSql($"INSERT INTO dbo.funcionarios (CI,nombre,apellido,fch_nacimiento,direccion,telefono,email,logId) VALUES ({f.CI},{f.Nombre},{f.Apellido},{f.Fch_Nacimiento},{f.Direccion},{f.Telefono},{f.Email},{logId})");
-                      _context.SaveChanges();  
-                }
+                      _context.SaveChanges();
+                      return Ok(new { message = logId });
+            }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                     return StatusCode(500);
                 }
-            return Ok();
+            
         }
 
         [HttpGet("ConseguirFuncionarios")]

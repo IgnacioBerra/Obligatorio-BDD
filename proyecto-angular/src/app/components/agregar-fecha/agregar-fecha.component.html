@@ -1,0 +1,32 @@
+<div class="fondo">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-6 text-center ">
+                <img src="../../assets/ucu.png" alt="" srcset="">
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-6 text-center ">
+                <h1 class="display-5">Agregar fecha</h1>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-6 content-form rounded shadow">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Fecha desde: </label>
+                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="fechaDesde" name="fechaDesde">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Fecha hasta:</label>
+                        <input type="date" class="form-control" id="exampleInputPassword1" [(ngModel)]="fechaHasta" name="fechaHasta">
+                    </div>
+                    <button type="submit" class="btn btn-guardar" (click)="agregarFecha()">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- control para que la fecha que ingrese esté correcta y no se encuentre en la bd -->
+<!-- deshabilitar los sabados y domingos -->
