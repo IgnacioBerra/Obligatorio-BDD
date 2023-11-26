@@ -20,12 +20,11 @@ export class DisplayFuncionariosComponent {
     this.funcService.getFuncionariosActualizados().subscribe(
       (response: any) => {
         this.funcionarios = response;
-        console.log(this.funcionarios); // Muestra la respuesta en la consola
+        console.log(this.funcionarios); 
       },
       (error: any) => {
         console.error('Error al obtener las actualizaciones:', error);
         console.log(error.error);
-        // Manejo de errores
       }
     );
   }

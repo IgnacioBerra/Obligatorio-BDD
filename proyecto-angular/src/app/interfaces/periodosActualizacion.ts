@@ -1,6 +1,6 @@
 export interface PeriodosActualizacion{    
-    año: number;
-    semestre: number;
-    fechaInicio: string;
-    fechaFin: string;
+    Año: number;
+    Semestre: number;
+    Fch_Inicio: string;
+    Fch_Fin: string;
 }

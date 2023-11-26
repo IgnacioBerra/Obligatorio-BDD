@@ -24,7 +24,7 @@ public class HangFireScheduler
             mailMessage.To.Add(mail);
             Console.WriteLine(mail);
         }
-        smtpClient.Send(mailMessage);
+        //smtpClient.Send(mailMessage);
     }
     public static void getEmailsForNotification(string connectionString)
     {

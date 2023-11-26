@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Logins } from '../../interfaces/logins';
-import { ToastrService } from 'ngx-toastr';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginFormComponent {
   password: string = "";
   logId = null; 
 
-  constructor(private loginService: LoginService, private toastr: ToastrService, private router: Router) {
+  constructor(private loginService: LoginService,  private router: Router) {
   }
 
   log() {
@@ -24,21 +24,26 @@ export class LoginFormComponent {
            logId: this.logId,
            password: this.password
          }
-         
+      
       this.loginService.logeo(login).subscribe(
         response => {
           console.log(response);
+          if(login.logId == 1 && login.password == 'admin')  {
           this.router.navigate(['/indexAdmin']);
+        }else{
+          this.router.navigate(['/userForm']);
+        }
         },
         error => {
           console.error('Error:', error);
-          this.toastr.error("Usuario no encontrado");
+          alert("Usuario no encontrado")
           return;
         }
       );
        
-    }else{
-      this.toastr.error("Los campos son obligatorios", "Error");
-    }
+    
+  }else{
+    alert("Campos obligatorios")
+  }
   }
 }

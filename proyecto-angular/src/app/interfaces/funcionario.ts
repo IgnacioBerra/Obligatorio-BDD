@@ -1,12 +1,12 @@
 export interface Funcionarios {    
     CI: number;
-    nombre: string;
-    apellido: string;
-    fechaNacimiento: Date;
-    direccion: string;
-    telefono: number;
-    email: string;
+    Nombre: string;
+    Apellido: string;
+    Fch_Nacimiento: string;
+    Direccion: string;
+    Telefono: number;
+    Email: string;
     logId?: number;
     Log?: number;
-    password?: string; 
+    Password?: string; 
 }

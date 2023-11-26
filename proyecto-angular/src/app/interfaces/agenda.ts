@@ -1,6 +1,5 @@
 export interface Agenda {
-    nro: number;
-    CI: number;
-    fechaAgenda: Date;
-    FuncId: number;
+    nro?: number;
+    ci: number;
+    fch_Agenda: string;
 }

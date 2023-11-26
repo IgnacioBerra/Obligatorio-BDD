@@ -15,7 +15,7 @@ export class PeriodoActualizacionService {
 
   addFecha(periodoActualizacion: PeriodosActualizacion){
     console.log(periodoActualizacion);
-    return this._http.post<any>(`${this.url}AddFecha`, periodoActualizacion);
+    return this._http.post<any>(`${this.url}AñadirFecha`, periodoActualizacion);
   }
 
   getPeriodosActualizacion(){

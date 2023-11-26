@@ -12,14 +12,14 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col-6 content-form rounded shadow">
-                <form [formGroup]="fechasPeriodosActualizacion">
+                <form>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Fecha desde: </label>
-                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="fechaDesde">
+                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="fechaDesde" name="fechaDesde">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Fecha hasta:</label>
-                        <input type="date" class="form-control" id="exampleInputPassword1" formControlName="fechaHasta">
+                        <input type="date" class="form-control" id="exampleInputPassword1" [(ngModel)]="fechaHasta" name="fechaHasta">
                     </div>
                     <button type="submit" class="btn btn-guardar" (click)="agregarFecha()">Guardar</button>
                 </form>
