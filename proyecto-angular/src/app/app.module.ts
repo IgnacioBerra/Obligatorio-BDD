@@ -15,6 +15,8 @@ import { AgendaComponent } from './components/agenda/agenda.component';
 import { FormCarneSaludComponent } from './components/form-carne-salud/form-carne-salud.component';
 import { AgendaFormComponent } from './components/agenda-form/agenda-form.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { DisplayAllFuncionariosComponent } from './display-all-funcionarios/display-all-funcionarios.component';
+import { FormularioCompletoComponent } from "./formulario-completo/formulario-completo.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     AgendaComponent,
     FormCarneSaludComponent,
     AgendaFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    DisplayAllFuncionariosComponent,
+    FormularioCompletoComponent
   ],
   imports: [
     BrowserModule,
