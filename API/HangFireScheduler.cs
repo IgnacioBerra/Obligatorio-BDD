@@ -24,7 +24,11 @@ public class HangFireScheduler
             mailMessage.To.Add(mail);
             Console.WriteLine(mail);
         }
-        smtpClient.Send(mailMessage);
+
+        if (emailsToSend.Count() > 0)
+        {
+            smtpClient.Send(mailMessage);
+        }
     }
     public static void getEmailsForNotification(string connectionString)
     {
@@ -40,7 +44,6 @@ public class HangFireScheduler
         {
             Console.WriteLine(e.Message);
         }
-        Console.WriteLine(emailsToSend.ToString());
     }
     private static SmtpClient createSMTPClient()
     {
