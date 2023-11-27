@@ -1,4 +1,5 @@
 create database clinica_ucu_salud;
+create database HangfireTest;
 use clinica_ucu_salud;
 
 create table Logins(
