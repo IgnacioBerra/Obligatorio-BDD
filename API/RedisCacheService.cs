@@ -22,7 +22,9 @@ public class RedisCacheService : IRedisCache
         {
             foreach(Logins user in listaUsers)
             {
-                this.logIdNumer = user.LogId;
+            Console.WriteLine(user.LogId);
+            Console.WriteLine(user.Password);
+            this.logIdNumer = user.LogId;
                 AddRegistration(user.Password);
             }
         }

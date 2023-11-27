@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySqlX.XDevAPI;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,10 +21,6 @@ namespace API.Clases
         [StringLength(maximumLength:500, MinimumLength = 2)]
         public string Comprobante { get; set; }
 
-        /*
-        [ForeignKey("Funcionarios")]
-        public int FuncCI { get; set; }
-        public Funcionarios Funcionarios { get; set; }
-        */
+        
     }
 }

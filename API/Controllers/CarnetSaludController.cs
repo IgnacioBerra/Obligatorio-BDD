@@ -38,18 +38,18 @@ namespace API.Controllers
         }
 
         [HttpGet("ConseguirCarnetSalud")]
-        public List<CarnetSalud> ConseguirCarnetSalud()
+        public ActionResult<List<CarnetSalud>> ConseguirCarnetSalud()
         {
             try
             {
-                return _context.carnetSalud.FromSqlRaw("SELECT * FROM dbo.carnet_salud").ToList();
+                var carnets = _context.carnetSalud.FromSqlRaw("SELECT * FROM dbo.carnet_salud").ToList();
+                return Ok(carnets);
                     
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<CarnetSalud>();
+                return StatusCode(500);
             }
 
         }
