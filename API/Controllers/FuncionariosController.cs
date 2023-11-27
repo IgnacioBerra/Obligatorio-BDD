@@ -4,6 +4,7 @@ using API.JSONRequests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 
 namespace API.Controllers
@@ -41,55 +42,55 @@ namespace API.Controllers
         }
 
         [HttpGet("ConseguirFuncionarios")]
-        public List<Funcionarios> ConseguirFuncionarios()
+        public ActionResult<List<Funcionarios>> ConseguirFuncionarios()
         {
             try
             {
-                return _context.funcionarios.FromSqlRaw($"SELECT * FROM dbo.funcionarios").ToList();
+                var funcionarios = _context.funcionarios.FromSqlRaw($"SELECT * FROM dbo.funcionarios").ToList();
+                return Ok(funcionarios);
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<Funcionarios>();
+                return StatusCode(500);
             }
-            
+
         }
 
         [HttpGet("ConseguirFuncionariosAgenda")]
-        public List<Funcionarios> ConseguirFuncionariosAgenda()
+        public ActionResult<List<Funcionarios>> ConseguirFuncionariosAgenda()
         {
             try
             {
-                 // Falta que retorne con la columna de Fch_Agenda.
                 var resultado = _context.funcionarios.FromSqlRaw($"SELECT DISTINCT funcionarios.* FROM dbo.funcionarios INNER JOIN dbo.agenda ON funcionarios.CI = agenda.CI").ToList();
 
-                return resultado;
+                return Ok(resultado);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<Funcionarios>();
+                return StatusCode(500);
             }
 
         }
 
         [HttpGet("ConseguirFuncionariosPorFecha")]
-        public List<Funcionarios> ConseguirFuncionariosPorFecha(string fecha )
+        public ActionResult<List<Funcionarios>> ConseguirFuncionariosPorFecha(string fecha )
         {
             try
             { 
+
                 var resultado = _context.funcionarios.FromSqlRaw($"SELECT DISTINCT funcionarios.* FROM dbo.funcionarios INNER JOIN dbo.agenda ON funcionarios.CI = agenda.CI WHERE agenda.Fch_Agenda='{fecha}'").ToList();
 
-                return resultado;
+                return Ok(resultado);
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<Funcionarios>();
+                return StatusCode(500);
             }
-
         }
 
     }

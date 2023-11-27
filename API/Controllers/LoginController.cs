@@ -1,4 +1,6 @@
-﻿using API.Clases;
+﻿using System.Security.Cryptography;
+using System.Text;
+using API.Clases;
 using API.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,24 +14,48 @@ namespace API.Controllers
     public class LoginController : ControllerBase
     {
         private readonly DataInfo _context;
+        private readonly ILogger<LoginController> _logger;
+        private readonly IRedisCache _cache;
 
-        public LoginController(DataInfo data)
+        public LoginController(DataInfo data, ILogger<LoginController> logger, IRedisCache rcache)
         {
             _context = data;
+            _logger = logger;
+            _cache = rcache;
         }
 
+        private string hashedPass(string password)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2"));
+                }
+                string hashedString = sb.ToString();
+                return hashedString;
+            }
+        }
+        
         [HttpPost("Logeo")]
         public IActionResult Logeo(Logins objeto)
         {
             try
             {
-                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={objeto.LogId}");
+                var byteData = _cache.GetUserRegistrationState(objeto.LogId.ToString());
+                bool userInSystem= byteData != null;
 
-                if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+                if (!userInSystem) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 
                 else
                 {
-                    if (login.First().Password == objeto.Password)
+                    string pass = Encoding.UTF8.GetString(byteData);
+                    string hashedPass = this.hashedPass(objeto.Password);
+                    if (hashedPass == pass)
                     {
 
                         return Ok(new { message = objeto.LogId });
@@ -49,22 +75,22 @@ namespace API.Controllers
 
         [HttpPost("AddUser")]
         public IActionResult AddUser(string password)
-        {        
-
-            try
-            {
+        {
+            string hashedString = hashedPass(password);
+            Console.WriteLine(hashedString);
+                try
+                {
                 
-               var ejecucion = _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({password})");
+                    var ejecucion = _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({hashedString})");
                
-            }
-            catch (Exception)
-            {
-                return StatusCode(500);
-            }
-            
-            _context.SaveChanges();
-            return Ok();
-
+                }
+                catch (Exception)
+                {
+                    return StatusCode(500);
+                }
+                _cache.AddRegistration(hashedString);
+                _context.SaveChanges();
+                return Ok();
         }
 
         [HttpDelete("DeleteUser")]
@@ -79,7 +105,7 @@ namespace API.Controllers
             {
                 return StatusCode(500);
             }
-
+            _cache.deleteRegister(logId);
             _context.SaveChanges();
             return Ok();
 
@@ -88,20 +114,24 @@ namespace API.Controllers
         [HttpPut("ChangePassword")]
         public IActionResult ChangePassword(int logId,string oldPassword, string newPassword)
         {
-
             try
             {
+                
+                var byteData = _cache.GetUserRegistrationState(logId.ToString());
+                bool userInSystem= byteData != null;
 
-                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={logId}");
 
-                if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+                if (!userInSystem) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 
                 else
                 {
-                    if (login.First().Password == oldPassword)
+                    string pass = Encoding.UTF8.GetString(byteData);
+                    string oldHashedPass = this.hashedPass(oldPassword);
+                    if (pass == oldHashedPass)
                     {
-
-                         _context.Database.ExecuteSql($"UPDATE logins SET password={newPassword} WHERE logId={logId}");
+                        string newHashedPass = this.hashedPass(newPassword);
+                        _cache.ChangePassword(logId, newHashedPass);
+                         _context.Database.ExecuteSql($"UPDATE logins SET password={newHashedPass} WHERE logId={logId}");
                     }
                     else
                     {

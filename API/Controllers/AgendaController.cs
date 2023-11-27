@@ -50,17 +50,18 @@ namespace API.Controllers
         }
 
         [HttpGet("ConseguirAgenda")]
-        public List<Agenda> ConseguirAgenda()
+        public ActionResult<List<Agenda>> ConseguirAgenda()
         {
             try
             {
-                return _context.agenda.FromSqlRaw($"SELECT * FROM dbo.agenda").ToList();
+                var agenda = _context.agenda.FromSqlRaw($"SELECT * FROM dbo.agenda").ToList();
+                return Ok(agenda);
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<Agenda>();
+                return StatusCode(500);
             }
 
         }

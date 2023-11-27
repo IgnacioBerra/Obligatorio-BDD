@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\USUARIO\\Escritorio\\UCU\\BASES DE DATOS 1\\ULTIMA VERSION OBLIGATORIO DEFINITIVA\\Obligatorio-BDD\\API\\API.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\Ignacio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ignacio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,17 +91,17 @@
               "target": "Package",
               "version": "[7.0.13, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.19.4, )"
             },
-            "MySql.Data": {
+            "StackExchange.Redis": {
               "target": "Package",
-              "version": "[8.2.0, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[2.7.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

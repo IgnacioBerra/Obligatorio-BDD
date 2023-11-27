@@ -2,6 +2,7 @@ using API;
 using API.Data;
 using Hangfire;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 35));
 builder.Services.AddDbContext<DataInfo>(options =>
 {
     options.UseSqlServer(connectionString);    
@@ -29,6 +29,14 @@ builder.Services.AddHangfire(config =>
     }
 );
 
+// Adding cache
+builder.Services.AddSingleton<IRedisCache>(serviceProvider =>
+{
+    var distributedCache = serviceProvider.GetRequiredService<IDistributedCache>();
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    return new RedisCacheService(distributedCache, connectionString);
+});
+builder.Services.AddStackExchangeRedisCache(options => { options.Configuration = builder.Configuration["RedisCacheUrl"]; });
 
 var app = builder.Build();
 
