@@ -1,4 +1,5 @@
-﻿using API.Clases;
+﻿using System.Text;
+using API.Clases;
 using API.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,14 @@ namespace API.Controllers
     public class LoginController : ControllerBase
     {
         private readonly DataInfo _context;
+        private readonly ILogger<LoginController> _logger;
+        private readonly IRedisCache _cache;
 
-        public LoginController(DataInfo data)
+        public LoginController(DataInfo data, ILogger<LoginController> logger, IRedisCache rcache)
         {
             _context = data;
+            _logger = logger;
+            _cache = rcache;
         }
 
         [HttpPost("Logeo")]
@@ -23,13 +28,16 @@ namespace API.Controllers
         {
             try
             {
-                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={objeto.LogId}");
+                var byteData = _cache.GetUserRegistrationState(objeto.LogId.ToString());
+                bool userInSystem= byteData != null;
+                Console.WriteLine(userInSystem);                
 
-                if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+                if (!userInSystem) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 
                 else
                 {
-                    if (login.First().Password == objeto.Password)
+                    string pass = Encoding.UTF8.GetString(byteData);
+                    if (pass == objeto.Password)
                     {
 
                         return Ok("Logeado correctamente");
@@ -50,7 +58,7 @@ namespace API.Controllers
         [HttpPost("AddUser")]
         public IActionResult AddUser(string password)
         {        
-
+            // PONER HASHEO
             try
             {
                 
@@ -61,7 +69,7 @@ namespace API.Controllers
             {
                 return StatusCode(500);
             }
-            
+            _cache.AddRegistration(password);
             _context.SaveChanges();
             return Ok();
 
@@ -79,7 +87,7 @@ namespace API.Controllers
             {
                 return StatusCode(500);
             }
-
+            _cache.deleteRegister(logId);
             _context.SaveChanges();
             return Ok();
 
@@ -91,16 +99,20 @@ namespace API.Controllers
 
             try
             {
+                
+                var byteData = _cache.GetUserRegistrationState(logId.ToString());
+                bool userInSystem= byteData != null;
 
-                var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={logId}");
+                //var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={logId}");
 
-                if (login == null) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
+                if (!userInSystem) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 
                 else
                 {
-                    if (login.First().Password == oldPassword)
+                    string pass = Encoding.UTF8.GetString(byteData);
+                    if (pass == oldPassword)
                     {
-
+                        _cache.ChangePassword(logId, newPassword);
                          _context.Database.ExecuteSql($"UPDATE logins SET password={newPassword} WHERE logId={logId}");
                     }
                     else

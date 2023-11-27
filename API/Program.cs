@@ -2,6 +2,7 @@ using API;
 using API.Data;
 using Hangfire;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,14 @@ builder.Services.AddHangfire(config =>
     }
 );
 
+// Adding cache
+builder.Services.AddSingleton<IRedisCache>(serviceProvider =>
+{
+    var distributedCache = serviceProvider.GetRequiredService<IDistributedCache>();
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    return new RedisCacheService(distributedCache, connectionString);
+});
+builder.Services.AddStackExchangeRedisCache(options => { options.Configuration = builder.Configuration["RedisCacheUrl"]; });
 
 var app = builder.Build();
 
@@ -43,14 +52,14 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseHangfireServer();
+//app.UseHangfireServer();
 
-app.UseHangfireDashboard(); // Optional: Use Hangfire dashboard for monitoring jobs
+//app.UseHangfireDashboard(); // Optional: Use Hangfire dashboard for monitoring jobs
 
 app.MapControllers();
 // A las 3 am pega a la base de datos para saber que mails debe enviar
-RecurringJob.AddOrUpdate("EmailRetriever", () => HangFireScheduler.getEmailsForNotification(connectionString),"0 3 * * *");
+//RecurringJob.AddOrUpdate("EmailRetriever", () => HangFireScheduler.getEmailsForNotification(connectionString),"0 3 * * *");
 // A las 15:30 envía los mails
-RecurringJob.AddOrUpdate("SendMails", () => HangFireScheduler.sendEmails(), "30 15 * * *");
+//RecurringJob.AddOrUpdate("SendMails", () => HangFireScheduler.sendEmails(), "30 15 * * *");
 
 app.Run();
