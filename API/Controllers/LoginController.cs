@@ -31,13 +31,11 @@ namespace API.Controllers
                 byte[] inputBytes = Encoding.UTF8.GetBytes(password);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
-                // Convert the byte array to a hexadecimal string
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < hashBytes.Length; i++)
                 {
-                    sb.Append(hashBytes[i].ToString("x2")); // "x2" formats each byte as a two-digit hexadecimal number
+                    sb.Append(hashBytes[i].ToString("x2"));
                 }
-
                 string hashedString = sb.ToString();
                 return hashedString;
             }
