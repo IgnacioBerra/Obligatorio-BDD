@@ -77,6 +77,7 @@ namespace API.Controllers
         public IActionResult AddUser(string password)
         {
             string hashedString = hashedPass(password);
+            Console.WriteLine(hashedString);
                 try
                 {
                 
@@ -119,7 +120,6 @@ namespace API.Controllers
                 var byteData = _cache.GetUserRegistrationState(logId.ToString());
                 bool userInSystem= byteData != null;
 
-                //var login = _context.logins.FromSqlRaw($"SELECT logId,password FROM dbo.logins WHERE logId={logId}");
 
                 if (!userInSystem) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 

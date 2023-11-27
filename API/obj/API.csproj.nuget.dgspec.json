@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Manuel Mongelós\\Desktop\\UCU\\Cuarto semestre\\Bases de datos\\obligatorioFinal\\Obligatorio-BDD\\API\\API.csproj": {}
+    "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Manuel Mongelós\\Desktop\\UCU\\Cuarto semestre\\Bases de datos\\obligatorioFinal\\Obligatorio-BDD\\API\\API.csproj": {
+    "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Manuel Mongelós\\Desktop\\UCU\\Cuarto semestre\\Bases de datos\\obligatorioFinal\\Obligatorio-BDD\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Manuel Mongelós\\Desktop\\UCU\\Cuarto semestre\\Bases de datos\\obligatorioFinal\\Obligatorio-BDD\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\Manuel Mongelós\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Manuel Mongelós\\Desktop\\UCU\\Cuarto semestre\\Bases de datos\\obligatorioFinal\\Obligatorio-BDD\\API\\obj\\",
+        "projectPath": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\Ignacio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Manuel Mongelós\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Ignacio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,17 +74,17 @@
               "target": "Package",
               "version": "[7.0.13, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.19.4, )"
             },
-            "MySql.Data": {
+            "StackExchange.Redis": {
               "target": "Package",
-              "version": "[8.2.0, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[2.7.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -100,24 +102,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.14, 6.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.14, 6.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.14, 6.0.14]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.14, 6.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -126,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

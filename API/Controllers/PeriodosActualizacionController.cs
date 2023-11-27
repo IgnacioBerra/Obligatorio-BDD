@@ -54,17 +54,17 @@ namespace API.Controllers
 
 
         [HttpGet("GetPeriodos")]
-        public List<PeriodosActualizacion> GetPeriodos()
+        public ActionResult<List<PeriodosActualizacion>> GetPeriodos()
         {
             try
             {
-                return _context.periodosActualizacion.FromSqlRaw($"SELECT * FROM dbo.periodos_actualizacion").ToList();
-
+                var periodos = _context.periodosActualizacion.FromSqlRaw($"SELECT * FROM dbo.periodos_actualizacion").ToList();
+                return Ok(periodos);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<PeriodosActualizacion>();
+                return StatusCode(500);
             }
 
         }

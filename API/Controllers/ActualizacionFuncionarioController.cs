@@ -39,16 +39,18 @@ namespace API.Controllers
         }
 
         [HttpGet("GetActualizaciones")]
-        public List<ActualizacionFuncionario> GetActualizaciones()
+        public ActionResult<List<ActualizacionFuncionario>> GetActualizaciones()
         {
             try
             {
-                return _context.actualizacion.FromSqlRaw($"SELECT CI,fecha_actualizacion,completado FROM dbo.actualizacion_funcionario").ToList();
+                var actualizaciones = _context.actualizacion.FromSqlRaw($"SELECT CI,fecha_actualizacion,completado FROM dbo.actualizacion_funcionario").ToList();
+                return Ok(actualizaciones);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<ActualizacionFuncionario>();
+                return StatusCode(500);
+                
             }
         }
     }
