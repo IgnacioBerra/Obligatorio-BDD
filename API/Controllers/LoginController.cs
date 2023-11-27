@@ -32,7 +32,7 @@ namespace API.Controllers
                     if (login.First().Password == objeto.Password)
                     {
 
-                        return Ok(new { message = "Logeado correctamente" });
+                        return Ok(new { message = objeto.LogId });
                     }
                     else
                     {

@@ -11,16 +11,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AgregarFechaComponent {
 
-  fechaDesde = '';
-  fechaHasta = '';
+  fechaDesde: string = '';
+  fechaHasta: string = '';
+  fechaDesdeInvalida: boolean = false;
+  fechaHastaInvalida: boolean = false;
+  errorText = '';
 
   constructor(private router: Router, private periodoService: PeriodoActualizacionService) {
   }
 
-  agregarFecha() {
+  agregarFecha(formulario: any) {
 
-    if (this.fechaDesde && this.fechaHasta) {
+   
+      if (this.fechaDesde == '') {
+        this.fechaDesdeInvalida = true;
+      } if (this.fechaHasta == '') {
+        this.fechaHastaInvalida = true;
+      } else {
+        this.fechaDesdeInvalida = this.fechaDesde > this.fechaHasta;
+        this.fechaHastaInvalida = this.fechaDesde > this.fechaHasta
+      }
 
+      if(!this.fechaDesdeInvalida && !this.fechaHastaInvalida){
       //cambiando formato a fecha, para utilizar los metodos
       const fechaDesdeDate: Date = new Date(this.fechaDesde);
       const fechaHastaDate: Date = new Date(this.fechaHasta);
@@ -60,16 +72,7 @@ export class AgregarFechaComponent {
         Fch_Fin: Fch_Fin
       }
 
-      // this.periodoService.addFecha(periodoActualizacion).subscribe(
-      //   response => {
-      //     console.log(response);
-      //     this.router.navigate(['/indexAdmin/displayFunc']);
-      //   },
-      //   error => {
-      //     console.log(error);
-      //     console.log("ERROR: ", error.error);
-      //   }
-      // );
+
       this.periodoService.getPeriodosActualizacion().subscribe(
         (response: any) => {
           if (response.length !== 0) {
@@ -81,7 +84,7 @@ export class AgregarFechaComponent {
               semestre: periodoActualizacion.Semestre,
               año: periodoActualizacion.Año
             }
-
+            
           this.periodoService.cambiarFecha(nuevaFecha).subscribe(
             response => {
               console.log(response);
@@ -108,11 +111,33 @@ export class AgregarFechaComponent {
           console.log(error);
         }
       );
-    } else {
-      console.log('Fechas inválidas');
-    }
+    
+  }
   }
 
 
+  // Función para verificar si la fecha desde es inválida
+  esFechaDesdeInvalida(): boolean {
+    if (this.fechaDesde == '') {
+      this.errorText = 'Por favor complete este campo';
+    } else {
+      if (this.fechaDesdeInvalida) {
+        this.errorText = 'La fecha desde no puede ser mayor que la fecha hasta.'
+      }
+    }
+    return this.fechaDesdeInvalida;
+  }
+
+  // Función para verificar si la fecha hasta es inválida
+  esFechaHastaInvalida(): boolean {
+    if (this.fechaHasta == '') {
+      this.errorText = 'Por favor complete este campo';
+    } else {
+      if (this.fechaHastaInvalida) {
+        this.errorText = 'La fecha hasta no puede ser menor que la fecha desde.'
+      }
+    }
+    return this.fechaHastaInvalida;
+  }
 
 }

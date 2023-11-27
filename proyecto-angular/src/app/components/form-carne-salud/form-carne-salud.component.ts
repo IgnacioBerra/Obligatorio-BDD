@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-form-carne-salud',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class FormCarneSaludComponent {
   urlImg: string = "";
+
+  constructor(private _location: Location){}
+
   onFileSelected(event: any): void {
     const inputElement = event.target;
     if (inputElement.files.length > 0) { //control
@@ -19,4 +23,7 @@ export class FormCarneSaludComponent {
     }
   }
 
+  goBack(): void{
+    this._location.back();
+  }
 }

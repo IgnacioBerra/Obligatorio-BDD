@@ -16,6 +16,10 @@ export class FuncionarioService {
     return this._http.post<any>(`${this.url}AddFuncionario`, func);
   }
 
+  getAllFuncionarios(){
+    return this._http.get(`${this.url}ConseguirFuncionarios`);
+  }
+
   getFuncionariosActualizados(){
     return this._http.get(`https://${environment.apiUrl}:7214/api/ActualizacionFuncionario/GetActualizaciones`);
   }

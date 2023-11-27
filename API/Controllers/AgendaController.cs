@@ -26,6 +26,11 @@ namespace API.Controllers
             try
             {
                 var funcionario = _context.funcionarios.FromSql($"SELECT * FROM dbo.funcionarios WHERE CI={a.CI}").ToList();
+                var check = _context.agenda.FromSql($"SELECT * FROM dbo.agenda WHERE CI={a.CI}").ToList();
+                if(check.Count > 0)
+                {
+                    return StatusCode(403);
+                }
                 if (funcionario.Count == 0)
                 {
                     return StatusCode(404);

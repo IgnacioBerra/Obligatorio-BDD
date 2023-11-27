@@ -9,8 +9,8 @@ import { AgendaComponent } from "./components/agenda/agenda.component";
 import { FormCarneSaludComponent } from "./components/form-carne-salud/form-carne-salud.component";
 import { UserFormComponent } from "./components/user-form/user-form.component";
 import { AgendaFormComponent } from "./components/agenda-form/agenda-form.component";
-import { DisplayAllFuncionariosComponent } from "./display-all-funcionarios/display-all-funcionarios.component";
-import { FormularioCompletoComponent } from "./formulario-completo/formulario-completo.component";
+import { DisplayAllFuncionariosComponent } from "./components/display-all-funcionarios/display-all-funcionarios.component";
+import { FormularioCompletoComponent } from "./components/formulario-completo/formulario-completo.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,8 +28,8 @@ const routes: Routes = [
   { path: 'displayFunc', component: DisplayFuncionariosComponent },
   { path: 'agregarFecha', component: AgregarFechaComponent },
   { path: 'carneSaludForm', component: FormCarneSaludComponent },
-  { path: 'userForm', component: UserFormComponent },
-  { path: 'agendaForm', component: AgendaFormComponent },
+  { path: 'userForm/:logId', component: UserFormComponent },
+  { path: 'agendaForm/:ci', component: AgendaFormComponent },
   { path: 'formCompleto', component: FormularioCompletoComponent }
 ];
 

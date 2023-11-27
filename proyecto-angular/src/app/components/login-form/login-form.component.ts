@@ -31,7 +31,7 @@ export class LoginFormComponent {
           if(login.logId == 1 && login.password == 'admin')  {
           this.router.navigate(['/indexAdmin']);
         }else{
-          this.router.navigate(['/userForm']);
+          this.router.navigate([`/userForm/${login.logId}`]);
         }
         },
         error => {
