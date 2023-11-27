@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 using API.Clases;
 using API.Data;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +24,25 @@ namespace API.Controllers
             _cache = rcache;
         }
 
+        private string hashedPass(string password)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to a hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2")); // "x2" formats each byte as a two-digit hexadecimal number
+                }
+
+                string hashedString = sb.ToString();
+                return hashedString;
+            }
+        }
+        
         [HttpPost("Logeo")]
         public IActionResult Logeo(Logins objeto)
         {
@@ -30,14 +50,14 @@ namespace API.Controllers
             {
                 var byteData = _cache.GetUserRegistrationState(objeto.LogId.ToString());
                 bool userInSystem= byteData != null;
-                Console.WriteLine(userInSystem);                
 
                 if (!userInSystem) { return Unauthorized("No se han encontrado usuarios con el logId especificado."); }
 
                 else
                 {
                     string pass = Encoding.UTF8.GetString(byteData);
-                    if (pass == objeto.Password)
+                    string hashedPass = this.hashedPass(objeto.Password);
+                    if (hashedPass == pass)
                     {
 
                         return Ok("Logeado correctamente");
@@ -57,22 +77,21 @@ namespace API.Controllers
 
         [HttpPost("AddUser")]
         public IActionResult AddUser(string password)
-        {        
-            // PONER HASHEO
-            try
-            {
+        {
+            string hashedString = hashedPass(password);
+                try
+                {
                 
-               var ejecucion = _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({password})");
+                    var ejecucion = _context.Database.ExecuteSql($"INSERT INTO dbo.logins (Password) VALUES ({hashedString})");
                
-            }
-            catch (Exception)
-            {
-                return StatusCode(500);
-            }
-            _cache.AddRegistration(password);
-            _context.SaveChanges();
-            return Ok();
-
+                }
+                catch (Exception)
+                {
+                    return StatusCode(500);
+                }
+                _cache.AddRegistration(hashedString);
+                _context.SaveChanges();
+                return Ok();
         }
 
         [HttpDelete("DeleteUser")]
@@ -96,7 +115,6 @@ namespace API.Controllers
         [HttpPut("ChangePassword")]
         public IActionResult ChangePassword(int logId,string oldPassword, string newPassword)
         {
-
             try
             {
                 
@@ -110,10 +128,12 @@ namespace API.Controllers
                 else
                 {
                     string pass = Encoding.UTF8.GetString(byteData);
-                    if (pass == oldPassword)
+                    string oldHashedPass = this.hashedPass(oldPassword);
+                    if (pass == oldHashedPass)
                     {
-                        _cache.ChangePassword(logId, newPassword);
-                         _context.Database.ExecuteSql($"UPDATE logins SET password={newPassword} WHERE logId={logId}");
+                        string newHashedPass = this.hashedPass(newPassword);
+                        _cache.ChangePassword(logId, newHashedPass);
+                         _context.Database.ExecuteSql($"UPDATE logins SET password={newHashedPass} WHERE logId={logId}");
                     }
                     else
                     {
