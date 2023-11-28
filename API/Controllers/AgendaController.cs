@@ -4,6 +4,8 @@ using API.JSONRequests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Writers;
+using System;
 
 namespace API.Controllers
 {
@@ -30,6 +32,9 @@ namespace API.Controllers
                 {
                     return StatusCode(404);
                 }
+
+                
+
                 else {
                     _context.Database.ExecuteSql($"INSERT INTO dbo.agenda (Fch_Agenda,CI) VALUES ({a.Fch_Agenda},{a.CI})");
                     _context.SaveChanges();

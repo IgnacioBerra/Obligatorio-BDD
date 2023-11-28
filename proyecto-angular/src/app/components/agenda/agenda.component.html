@@ -1,0 +1,18 @@
+<div class="container cont-display shadow-sm rounded">
+    <div class="row">
+        <div class="col">
+            <h2 class="titulo">Agenda</h2>
+            <hr>
+            <div class="scroll-div">
+                <div class="cont-funcionarios"*ngFor="let agenda of agendas">
+                    <div *ngIf="error">
+                        <h1>ERRROR AL CARGAR LA AGENDA</h1>
+                    </div>
+                    <p class="text-func">Cédula: {{agenda.ci}}</p>
+                    <p class="text-func">Fecha agenda: {{agenda.fch_Agenda | date:'dd-MM-yyyy'}}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

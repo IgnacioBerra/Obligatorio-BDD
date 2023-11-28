@@ -1,0 +1,18 @@
+<div class="container cont-display shadow-sm rounded">
+    <div class="row">
+        <div class="col">
+            <h2 class="titulo">Funcionarios con formulario de Carnet de Salud completado</h2>
+            <p class="lead">Cantidad total: {{funcionarios.length}}</p>
+            <hr>
+            <div class="scroll-div">
+                <div class="cont-funcionarios" *ngFor="let funcionario of funcionarios">
+                    <p class="text-func">Cédula: {{funcionario.ci}}</p>
+                    <p class="text-func">Fecha emisión: {{funcionario.fch_Emision}}</p>
+                    <p class="text-func">Fecha vencimiento: {{funcionario.fch_Vencimiento}}</p>
+                    <img [src]="funcionario.comprobante" width="200px" height="200px">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Cabin&family=Calistoga&family=Francois+One&family=Josefin+Slab:wght@300&family=Patua+One&family=Slabo+27px&display=swap');
+
+.titulo{
+    font-family: 'Cabin', sans-serif;
+    font-size: 30px;
+}
+
+.text-func{
+    font-size: 16px;
+}
+.cont-display{
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.scroll-div{
+    overflow-y: auto;
+    height: 590px;
+}
+
+
+.scroll-div::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+}
+
+.scroll-div::-webkit-scrollbar-track {
+   /* background-color: rgba(0, 0, 0, 0.3);*/
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0);
+}
+
+.scroll-div::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.3);;
+    outline: 1px solid  rgba(0, 0, 0, 0.3);;
+}

@@ -49,6 +49,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(options =>
+{
+    options.WithOrigins("http://localhost:4200");
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
+
+
 app.UseAuthorization();
 
 app.UseHangfireServer();

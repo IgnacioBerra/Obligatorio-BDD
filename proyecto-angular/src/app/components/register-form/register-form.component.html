@@ -1,0 +1,79 @@
+<div class="background-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="content-form shadow">
+                    <div class="row">
+                        <div class="col-2">
+                            <a routerLink="/login" ><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-arrow-left-square volver" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                            </svg></a>
+                        </div>
+                        <div class="col-10 form-container">
+                            <div class="row">
+                                <div class="col">
+                                    <h1 class="display-6">Register</h1>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <form class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="inputNombre" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="inputNombre" [(ngModel)]="nombre" name="nombre">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputApellido" class="form-label">Apellido</label>
+                                            <input type="text" class="form-control" id="inputApellido" [(ngModel)]="apellido" name="apellido">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="inputAddress" class="form-label">Dirección</label>
+                                            <input type="text" class="form-control" id="inputAddress"
+                                                placeholder="1234 Main St" [(ngModel)]="direccion" name="direccion">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="inputEmail" class="form-label">Correo electrónico</label>
+                                            <input type="email" class="form-control" id="inputEmail"
+                                                placeholder="example@gmail.com" [(ngModel)]="email" name="email">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="inputPassword" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password" name="password">
+                                          </div>
+                                        <div class="col-md-6">
+                                            <label for="inputTelefono" class="form-label">Telefono</label>
+                                            <input type="number" class="form-control" id="inputTelefono" [(ngModel)]="telefono" name="telefono">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputCi" class="form-label">Cédula</label>
+                                            <input type="number" class="form-control" id="inputCi" [(ngModel)]="ci" name="ci">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="inputFechaNac" class="form-label">Fecha de nacimiento</label>
+                                            <input type="date" class="form-control" id="inputFechaNac" [(ngModel)]="fecha_nacimiento" name="fecha_nacimiento">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" [(ngModel)]="carnetsalud" (change)="onChange($event)" name="carnetsalud" id="gridCheck">
+                                                <label class="form-check-label" for="gridCheck">
+                                                    Tengo carnet de salud
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button  (click)="signIn()" class="btn btn-register">Sign in</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
