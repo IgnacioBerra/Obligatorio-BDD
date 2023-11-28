@@ -1,0 +1,21 @@
+<div class="container cont-display shadow-sm rounded">
+    <div class="row">
+        <div class="col">
+            <h2 class="titulo">Funcionarios</h2>
+            <p class="lead">Cantidad total: {{funcionarios.length}}</p>
+            <hr>
+            <div class="scroll-div">
+                <div class="cont-funcionarios" *ngFor="let funcionario of funcionarios">
+                    <p class="text-func">Cédula: {{funcionario.ci}}</p>
+                    <p class="text-func">Nombre: {{funcionario.nombre}}</p>
+                    <p class="text-func">Apellido: {{funcionario.apellido}}</p>
+                    <p class="text-func">Fecha de nacimiento: {{funcionario.fch_Nacimiento}}</p>
+                    <p class="text-func">Direccion: {{funcionario.direccion}}</p>
+                    <p class="text-func">Telefono: {{funcionario.telefono}}</p>
+                    <p class="text-func">Email: {{funcionario.email}}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

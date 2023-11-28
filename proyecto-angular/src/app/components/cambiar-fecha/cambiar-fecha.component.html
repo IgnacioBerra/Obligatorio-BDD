@@ -1,0 +1,44 @@
+<!-- <div class="fondo">
+    <div class="container cont-fecha rounded shadow-sm">
+        <div class="row">
+            <div class="col">
+                <p>Fecha de actualización</p>
+                <div class="input-group mb-3">
+                    <select class="form-select" aria-label="Default select example" aria-describedby="button-addon2"
+                        [disabled]="isDisabled">
+                        <option *ngFor="let fecha of fechas_actualizacion" [value]="fecha">{{ fecha.fch_Inicio | date: 'yyyy-MM-dd' }} - {{ fecha.fch_Fin | date: 'yyyy-MM-dd' }}</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" (click)="cambiarFecha()" type="button"
+                        id="button-addon2">{{buttonText}}</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+               <button routerLink="/agregarFecha" class="btn btn-agregar">Cambiar fecha</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="fondo">
+    <div class="container cont-fecha rounded shadow-sm">
+        <div class="row">
+            <div class="col">
+                <p>Fecha de actualización</p>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInputDisabled" placeholder="{{ fechaInico | date: 'dd/MM/yyyy'}} - {{ fechaFin | date: 'dd/MM/yyyy'}}"
+                        disabled>
+                    <label for="floatingInputDisabled">{{ fechaInico | date: 'dd/MM/yyyy'}} - {{ fechaFin | date: 'dd/MM/yyyy'}}</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+               <button routerLink="/agregarFecha" class="btn btn-agregar">Cambiar fecha</button>
+            </div>
+        </div>
+    </div>
+</div>

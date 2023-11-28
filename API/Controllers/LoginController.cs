@@ -58,7 +58,7 @@ namespace API.Controllers
                     if (hashedPass == pass)
                     {
 
-                        return Ok("Logeado correctamente");
+                        return Ok(new { message = objeto.LogId });
                     }
                     else
                     {
@@ -77,7 +77,6 @@ namespace API.Controllers
         public IActionResult AddUser(string password)
         {
             string hashedString = hashedPass(password);
-            Console.WriteLine(hashedString);
                 try
                 {
                 
