@@ -25,5 +25,5 @@
 
  - Como implementamos CACHE, se debe ejecutar los siguientes comandos en el CMD:
  
-docker pull redis
-docker run -p 6379:6379 --name local-redis -d redis
+ - docker pull redis
+ - docker run -p 6379:6379 --name local-redis -d redis
