@@ -21,9 +21,17 @@
 
  - Tener Visual Studio 2022 instalado, copiar y pegar link en el buscador para iniciar la descarga. https://visualstudio.microsoft.com/es/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false
 
- - Abrir la WEB Api en Visual Studio, y seleccionamos depurar API (No Docker ni las otras opciones).
+ - Abrir la carpeta de la API en Visual Studio, seleccionamos el proyecto de la API, y seleccionamos depurar API (No Docker ni las otras opciones).
 
  - Como implementamos CACHE, se debe ejecutar los siguientes comandos en el CMD:
  
  - docker pull redis
  - docker run -p 6379:6379 --name local-redis -d redis
+
+
+
+
+ * ACLARACIONES EXTRAS:*
+ - Para entrar como Admin después de haber realizado todos los pasos anteriores, se debe ingresar:
+ - logId : 1
+ - password: admin

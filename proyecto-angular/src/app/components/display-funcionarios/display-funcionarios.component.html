@@ -7,8 +7,6 @@
             <div class="scroll-div">
                 <div class="cont-funcionarios" *ngFor="let funcionario of funcionarios">
                     <p class="text-func">Cédula: {{funcionario.ci}}</p>
-                    <p class="text-func">Fecha emisión: {{funcionario.fch_Emision}}</p>
-                    <p class="text-func">Fecha vencimiento: {{funcionario.fch_Vencimiento}}</p>
                     <img [src]="funcionario.comprobante" width="200px" height="200px">
                     <hr>
                 </div>

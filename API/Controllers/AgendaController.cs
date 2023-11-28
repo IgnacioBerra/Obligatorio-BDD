@@ -30,7 +30,9 @@ namespace API.Controllers
                 var funcionario = _context.funcionarios.FromSql($"SELECT * FROM dbo.funcionarios WHERE CI={a.CI}").ToList();
                 if (funcionario.Count == 0)
                 {
+
                     return StatusCode(404);
+
                 }
 
                 

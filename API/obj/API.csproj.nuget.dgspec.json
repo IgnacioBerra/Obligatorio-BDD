@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj": {}
+    "C:\\Users\\Ignacio\\Desktop\\copiar\\Obligatorio-BDD\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj": {
+    "C:\\Users\\Ignacio\\Desktop\\copiar\\Obligatorio-BDD\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Ignacio\\Desktop\\copiar\\Obligatorio-BDD\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\API.csproj",
+        "projectPath": "C:\\Users\\Ignacio\\Desktop\\copiar\\Obligatorio-BDD\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Ignacio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ignacio\\Desktop\\Obligatorio-BDD\\API\\obj\\",
+        "outputPath": "C:\\Users\\Ignacio\\Desktop\\copiar\\Obligatorio-BDD\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ignacio\\AppData\\Roaming\\NuGet\\NuGet.Config",
