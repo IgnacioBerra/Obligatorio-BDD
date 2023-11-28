@@ -1,14 +1,14 @@
 # Obligatorio-BDD
 
 
-Para ejecutar el programa se deben seguir los siguientes pasos : 
+# Para ejecutar el Obligatorio se deben seguir los siguientes pasos : 
 
-     *Para que funcione Angular*
-
+ *Para que funcione Angular*
+ En la carpeta de Angular:
 - Se deben instalar las dependencias con el comando: npm i
 - Para levantar el Angular se debe ejecutar el comando: ng serve --o
 
-    *Para que funcione la Base de Datos*
+*Para que funcione la Base de Datos*
 
  - Tener SQL Server instalado, copiar y pegar link en el buscador para iniciar la descarga. https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x40A&culture=es-es&country=es
    
